@@ -1,0 +1,361 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 13,
+  "summary": "Expand the storefront catalog beyond the original 4 products by adding multiple new services with official logos; remove the 3‑month duration option; add a Messenger group join link for investigation/proof; and change pricing visibility so only Chess.com and Netflix show prices while other services hide prices and use a WhatsApp-linked “(prize)” text for queries.",
+  "architectural_notes": [
+    "Single-page storefront with client-side JavaScript for UI interactions (search filter, cart count, dynamic pricing, toast).",
+    "WhatsApp direct-buy flow builds a URL-encoded prefilled message and redirects to wa.me/8801326060586.",
+    "Consistent dark/slate premium UI theme with red accents across components; prioritize responsive/mobile-first layout.",
+    "Total price calculations must multiply quantity by the offer/current price (not the regular/crossed-out price).",
+    "Include official product images/logos on product cards (Chess.com, Netflix, Spotify, YouTube) and ensure assets are optimized for fast loading/responsive display.",
+    "Add support for products/services with hidden pricing: render a clickable “(prize)” label that redirects to WhatsApp for price queries; only Chess.com and Netflix display numeric prices.",
+    "Add a UI element linking to a Messenger group join URL for investigation/proof (https://m.me/j/AbZu2osHvaTmS0WN/).",
+    "Remove the 3-month duration option from product configuration (only 1-month remains)."
+  ],
+  "known_issues": [
+    "Deployment failed with error: domain gen-z_nexus_solution must be 5–50 characters and contain only letters, numbers, and hyphens (underscore not allowed).",
+    "Unable to go live due to deployment error (needs fix and redeploy)."
+  ],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Chess.com official-style logo on transparent background (chesscom-logo-official.dim_512x512.png)\n- ChatGPT official-style logo on transparent background (chatgpt-logo.dim_512x512.png)\n- Gemini official-style logo on transparent background (gemini-logo.dim_512x512.png)\n- Facebook official-style logo on transparent background (facebook-logo.dim_512x512.png)\n- Toffee official-style logo on transparent background (toffee-logo.dim_512x512.png)\n- Chorki official-style logo on transparent background (chorki-logo.dim_512x512.png)\n- Deepto Pay official-style logo on transparent background (deeptopay-logo.dim_512x512.png)\n- Bioscope official-style logo on transparent background (bioscope-logo.dim_512x512.png)\n- iScreen official-style logo on transparent background (iscreen-logo.dim_512x512.png)\n- Hoichoi official-style logo on transparent background (hoichoi-logo.dim_512x512.png)\n- PUBG official-style logo on transparent background (pubg-logo.dim_512x512.png)\n- Free Fire official-style logo on transparent background (freefire-logo.dim_512x512.png)\n- Adobe Creative official-style logo on transparent background (adobe-creative-logo.dim_512x512.png)\n- Canva official-style logo on transparent background (canva-logo.dim_512x512.png)\n- Truecaller official-style logo on transparent background (truecaller-logo.dim_512x512.png)\n- CamScanner official-style logo on transparent background (camscanner-logo.dim_512x512.png)",
+  "existing_features": [
+    {
+      "id": "feature-create-the-main-storefront-page-for-the-e-commerce-subscription-store-named-gen-z-nexus-solution-with-a-dark-slate-premium-theme-and-red-accents-applied-consistently-across-all-sections-typography-buttons-cards-badges-inputs",
+      "title": "Create the main storefront page for the e-commerce subscription store named “Gen-Z Nexus Solution” with a dark/slate premium theme and red accents, applied consistently across all sections (typography, buttons, cards, badges, inputs).",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-top-notice-bar-as-a-red-horizontally-scrolling-marquee-style-strip-fixed-at-the-very-top-of-the-page-that-displays-exactly-service-time-12-pm-1-am-friday-after-2-30-pm",
+      "title": "Implement the top Notice Bar as a red, horizontally scrolling (marquee-style) strip fixed at the very top of the page that displays exactly: “⏰ Service Time: 12 PM–1 AM | 🏰 Friday After 2:30 PM”.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-the-header-layout-with-1-a-logo-on-the-left-2-a-functional-search-input-centered-and-3-a-shopping-bag-icon-on-the-right-showing-a-cart-item-count-badge",
+      "title": "Create the Header layout with: (1) a logo on the left, (2) a functional search input centered, and (3) a shopping bag icon on the right showing a cart item count badge.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-hero-section-with-a-sleek-banner-containing-the-headline-all-your-favorite-subscriptions-in-one-place-and-a-shop-now-button-that-has-a-pulse-animation-and-scrolls-jumps-the-user-to-the-product-grid-when-clicked",
+      "title": "Implement the Hero section with a sleek banner containing the headline “All Your Favorite SUBSCRIPTIONS in One Place” and a “Shop Now” button that has a pulse animation and scrolls/jumps the user to the product grid when clicked.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-fanflix-style-product-grid-with-product-cards-for-exactly-netflix-premium-spotify-youtube-premium-and-chess-com-diamond-membership-each-card-must-display-a-sale-badge-star-ratings-crossed-out-original-price-and-a-current-price-in-tk-format-example-tk-350",
+      "title": "Create a Fanflix-style product grid with product cards for exactly: Netflix Premium, Spotify, YouTube Premium, and Chess.com Diamond Membership. Each card must display: a “Sale” badge, star ratings, crossed-out original price, and a current price in Tk format (example: “Tk 350”).",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-product-detail-interactions-per-product-card-duration-toggle-for-1-month-and-3-month-and-a-functional-quantity-selector-with-and-controls-minimum-1",
+      "title": "Add product detail interactions per product card: duration toggle for “1 Month” and “3 Month”, and a functional quantity selector with “+” and “-” controls (minimum 1).",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-dynamic-pricing-calculation-so-that-when-a-user-changes-quantity-and-or-duration-if-pricing-differs-the-total-price-updates-instantly-in-the-ui-for-that-product-card",
+      "title": "Implement dynamic pricing calculation so that when a user changes quantity (and/or duration if pricing differs), the total price updates instantly in the UI for that product card.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-real-time-search-filtering-typing-into-the-header-search-bar-filters-the-visible-product-cards-immediately-by-product-name",
+      "title": "Implement real-time search filtering: typing into the header search bar filters the visible product cards immediately by product name.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-direct-buy-buy-it-now-flow-clicking-buy-it-now-collects-product-name-selected-duration-and-quantity-then-redirects-the-user-to-whatsapp-at-https-wa-me-8801326060586-with-a-pre-filled-message-containing-those-fields",
+      "title": "Implement a Direct Buy (“Buy It Now”) flow: clicking “Buy It Now” collects Product Name, selected Duration, and Quantity, then redirects the user to WhatsApp at https://wa.me/8801326060586 with a pre-filled message containing those fields.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-cart-system-each-product-card-has-an-add-to-cart-button-that-1-adds-the-selected-configuration-product-duration-with-quantity-2-shows-a-success-toast-notification-and-3-updates-the-header-shopping-bag-count-to-reflect-total-items-in-cart",
+      "title": "Implement a cart system: each product card has an “Add to cart” button that (1) adds the selected configuration (product, duration) with quantity, (2) shows a “Success” toast notification, and (3) updates the header shopping bag count to reflect total items in cart.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-trust-checkout-section-that-displays-a-guaranteed-safe-checkout-banner-and-shows-icons-for-bkash-nagad-visa-and-mastercard-in-a-visually-consistent-style-with-the-dark-theme",
+      "title": "Add a trust/checkout section that displays a “Guaranteed Safe Checkout” banner and shows icons for bKash, Nagad, Visa, and Mastercard in a visually consistent style with the dark theme.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-customer-reviews-section-that-displays-a-list-of-reviews-with-a-visible-verified-buyer-tag-and-provides-a-write-a-review-form-that-allows-submitting-a-new-review-name-rating-and-review-text-submitted-reviews-should-appear-in-the-reviews-list-after-submission",
+      "title": "Add a Customer Reviews section that displays a list of reviews with a visible “Verified Buyer” tag and provides a “Write a Review” form that allows submitting a new review (name, rating, and review text). Submitted reviews should appear in the reviews list after submission.",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-mobile-optimization-and-responsiveness-across-the-entire-page-notice-bar-header-hero-product-grid-trust-section-reviews-and-add-a-floating-green-whatsapp-support-button-fixed-to-the-bottom-right-of-the-viewport-that-links-to-https-wa-me-8801326060586",
+      "title": "Ensure mobile optimization and responsiveness across the entire page (notice bar, header, hero, product grid, trust section, reviews) and add a floating green WhatsApp Support button fixed to the bottom-right of the viewport that links to https://wa.me/8801326060586.",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-investigate-the-previous-deployment-failure-and-fix-the-underlying-build-deploy-issues-so-the-project-can-successfully-compile-and-deploy-with-the-standard-internet-computer-workflow-dfx-build-deploy-without-manual-intervention",
+      "title": "Investigate the previous deployment failure and fix the underlying build/deploy issues so the project can successfully compile and deploy with the standard Internet Computer workflow (dfx build/deploy) without manual intervention.",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-deterministic-retry-deployment-workflow-that-re-runs-deployment-from-a-clean-known-good-state-e-g-clearing-derived-build-artifacts-as-needed-and-produces-consistent-results-across-retries",
+      "title": "Add a deterministic “retry deployment” workflow that re-runs deployment from a clean, known-good state (e.g., clearing derived build artifacts as needed) and produces consistent results across retries.",
+      "reqIds": [
+        "REQ-15"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-any-user-facing-error-text-shown-in-the-app-if-applicable-is-in-english-and-provides-an-actionable-next-step-e-g-please-refresh-and-try-again-or-contact-support-on-whatsapp",
+      "title": "Ensure any user-facing error text shown in the app (if applicable) is in English and provides an actionable next step (e.g., “Please refresh and try again” or “Contact support on WhatsApp”).",
+      "reqIds": [
+        "REQ-16"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-fix-the-deployment-failure-caused-by-an-invalid-domain-canister-naming-value-containing-underscores-e-g-gen-z-nexus-solution-update-the-project-s-deployment-configuration-so-all-relevant-identifiers-use-only-lowercase-letters-numbers-and-hyphens-5-50-chars-and-the-app-can-deploy-successfully-with-the-standard-dfx-deploy-workflow",
+      "title": "Fix the deployment failure caused by an invalid domain/canister naming value containing underscores (e.g., \"gen-z_nexus_solution\"). Update the project’s deployment configuration so all relevant identifiers use only lowercase letters, numbers, and hyphens (5–50 chars) and the app can deploy successfully with the standard `dfx deploy` workflow.",
+      "reqIds": [
+        "REQ-17"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-harden-the-deterministic-retry-deployment-workflow-so-it-reliably-redeploys-from-a-clean-state-and-surfaces-clear-actionable-errors-in-english-when-deployment-fails-including-naming-validation-failures",
+      "title": "Harden the deterministic retry deployment workflow so it reliably redeploys from a clean state and surfaces clear, actionable errors in English when deployment fails (including naming validation failures).",
+      "reqIds": [
+        "REQ-18"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-complete-and-update-frontend-deployment-md-so-it-documents-the-exact-go-live-steps-including-the-retry-command-and-includes-a-short-troubleshooting-section-for-the-underscore-invalid-name-failure-with-the-correct-naming-rules",
+      "title": "Complete and update `frontend/DEPLOYMENT.md` so it documents the exact go-live steps (including the retry command) and includes a short troubleshooting section for the underscore/invalid-name failure with the correct naming rules.",
+      "reqIds": [
+        "REQ-19"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-product-pricing-in-frontend-src-components-productgrid-tsx-for-the-following-products-so-the-ui-shows-the-correct-crossed-out-regular-price-and-the-correct-offer-price-for-the-selected-duration-chess-com-diamond-membership-regular-price-1250-offer-price-970-netflix-premium-regular-price-1800-tk-offer-price-1550-spotify-regular-price-450-offer-price-400-apply-the-new-regular-price-to-the-originalprice-field-and-apply-the-new-offer-price-to-prices-1-month-and-ensure-the-displayed-current-offer-price-for-the-default-selected-duration-matches-the-offer-price-do-not-change-any-other-products-prices-unless-specified",
+      "title": "Update the product pricing in `frontend/src/components/ProductGrid.tsx` for the following products so the UI shows the correct crossed-out regular price and the correct offer price for the selected duration:\n- Chess.com Diamond Membership: regular price 1250, offer price 970\n- Netflix Premium: regular price 1800 Tk, offer price 1550\n- Spotify: regular price 450, offer price 400\nApply the new regular price to the `originalPrice` field and apply the new offer price to `prices['1 Month']` (and ensure the displayed current/offer price for the default selected duration matches the offer price). Do not change any other products’ prices unless specified.",
+      "reqIds": [
+        "REQ-20"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-static-official-product-images-logos-for-chess-com-netflix-spotify-and-youtube-premium-as-new-generated-image-assets-under-frontend-public-assets-generated-and-ensure-the-filenames-are-referenced-consistently-from-the-product-data",
+      "title": "Add static official product images/logos for Chess.com, Netflix, Spotify, and YouTube Premium as new generated image assets under `frontend/public/assets/generated/`, and ensure the filenames are referenced consistently from the product data.",
+      "reqIds": [
+        "REQ-21"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-frontend-src-components-productgrid-tsx-so-each-of-the-4-products-netflix-premium-spotify-youtube-premium-chess-com-diamond-membership-uses-the-new-generated-logo-image-asset-path-in-its-image-field",
+      "title": "Update `frontend/src/components/ProductGrid.tsx` so each of the 4 products (Netflix Premium, Spotify, YouTube Premium, Chess.com Diamond Membership) uses the new generated logo/image asset path in its `image` field.",
+      "reqIds": [
+        "REQ-22"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-frontend-src-components-productcard-tsx-to-display-product-image-as-the-product-artwork-in-the-card-s-image-area-replacing-the-current-placeholder-initial-using-an-img-with-meaningful-english-alt-text-if-the-image-fails-to-load-fall-back-to-the-existing-placeholder-initial-so-the-ui-never-shows-a-broken-image-icon",
+      "title": "Update `frontend/src/components/ProductCard.tsx` to display `product.image` as the product artwork in the card’s image area (replacing the current placeholder initial), using an `<img>` with meaningful English `alt` text. If the image fails to load, fall back to the existing placeholder initial so the UI never shows a broken image icon.",
+      "reqIds": [
+        "REQ-23"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-remove-the-3-month-duration-option-across-the-storefront-and-keep-only-a-single-1-month-duration-for-all-products-and-cart-items",
+      "title": "Remove the “3 Month” duration option across the storefront and keep only a single “1 Month” duration for all products and cart items.",
+      "reqIds": [
+        "REQ-24"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-visible-investigation-proof-messenger-group-link-in-the-storefront-ui-that-opens-the-messenger-group-join-url-in-a-new-tab-https-m-me-j-abzu2oshvatms0wn",
+      "title": "Add a visible “Investigation / Proof (Messenger Group)” link in the storefront UI that opens the Messenger group join URL in a new tab: https://m.me/j/AbZu2osHvaTmS0WN/",
+      "reqIds": [
+        "REQ-25"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-expand-the-product-catalog-to-include-the-following-additional-services-in-the-product-grid-chatgpt-gemini-facebook-toffee-chorki-deepto-pay-bioscope-iscreen-hoichoi-pubg-free-fire-adobe-creative-canva-truecaller-camscanner-each-new-service-must-display-its-official-logo-image-on-the-product-card",
+      "title": "Expand the product catalog to include the following additional services in the product grid: ChatGPT, Gemini, Facebook, Toffee, Chorki, Deepto Pay, Bioscope, iScreen, Hoichoi, PUBG, Free Fire, Adobe Creative, Canva, Truecaller, CamScanner. Each new service must display its official logo image on the product card.",
+      "reqIds": [
+        "REQ-26"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-restrict-visible-numeric-pricing-to-only-chess-com-diamond-membership-and-netflix-premium-for-all-other-products-including-existing-spotify-and-youtube-premium-plus-all-newly-added-services-hide-numeric-prices-and-instead-show-clickable-prize-text-that-opens-whatsapp-https-wa-me-8801326060586-with-a-pre-filled-query-message-for-that-product",
+      "title": "Restrict visible numeric pricing to only Chess.com Diamond Membership and Netflix Premium. For all other products (including existing Spotify and YouTube Premium, plus all newly added services), hide numeric prices and instead show clickable “(prize)” text that opens WhatsApp (https://wa.me/8801326060586) with a pre-filled query message for that product.",
+      "reqIds": [
+        "REQ-27"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-the-chess-com-product-card-uses-an-official-chess-com-logo-asset-replacing-the-current-chess-com-artwork-if-needed-and-update-the-product-data-to-reference-the-new-asset-path-consistently",
+      "title": "Ensure the Chess.com product card uses an official Chess.com logo asset (replacing the current Chess.com artwork if needed) and update the product data to reference the new asset path consistently.",
+      "reqIds": [
+        "REQ-28"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Create core layout UI (notice bar, header with logo/search/bag, hero banner with CTA pulse animation) in dark/slate theme with red accents",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Implement product grid (Fanflix-style) with cards for Netflix Premium, Spotify, YouTube Premium, Chess.com Diamond including sale badge, ratings, original vs current price",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Add product detail interactions: 1 Month/3 Month toggle and +/- quantity selector",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Implement dynamic pricing updates as quantity changes (instant total updates)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Implement real-time search filtering from header search bar",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Implement WhatsApp 'Buy It Now' redirect with prefilled message containing product name, duration, and quantity (wa.me/8801326060586)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Implement cart system: add-to-cart, success toast notification, and bag icon count update",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Add trust & checkout section: 'Guaranteed Safe Checkout' banner with icons (bKash, Nagad, Visa, Mastercard)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "Add customer reviews section with verified buyer tags and 'Write a Review' form",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-10",
+      "summary": "Mobile optimization: fully responsive, fast-loading, and floating WhatsApp support button bottom-right",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-12",
+      "summary": "Fix deployment/go-live failure including domain/canister naming constraint error (gen-z_nexus_solution invalid due to underscore) and redeploy successfully",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-13",
+      "summary": "Update product pricing: Chess.com regular 1250 BDT offer 970; Netflix regular 1800 BDT offer 1550; Spotify regular 450 BDT offer 400 (show crossed-out regular price and current offer price)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-14",
+      "summary": "Add official product images/logos for Chess.com, Netflix, Spotify, and YouTube Premium on their product cards",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-15",
+      "summary": "Remove the 3 Month duration option across product cards (keep only 1 Month)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-16",
+      "summary": "Add a Messenger group joining link for investigation/proof (https://m.me/j/AbZu2osHvaTmS0WN/) in the storefront UI",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-17",
+      "summary": "Add additional service options (ChatGPT, Gemini, Facebook, Toffee, Chorki, Deepto Pay, Bioscope, iScreen, Hoichoi, PUBG, Free Fire, Adobe Creative, Canva, Truecaller, CamScanner) with official logos",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-18",
+      "summary": "Hide prices for all newly added services; display “(prize)” text that links to WhatsApp for queries when clicked",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-19",
+      "summary": "Restrict visible pricing to only Chess.com and Netflix (all other services should not show numeric prices)",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Gen-Z Nexus Solution",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

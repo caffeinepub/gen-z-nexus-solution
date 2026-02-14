@@ -1,0 +1,101 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-remove-the-3-month-duration-option-across-the-storefront-and-keep-only-a-single-1-month-duration-for-all-products-and-cart-items",
+      "featureTitle": "Remove the “3 Month” duration option across the storefront and keep only a single “1 Month” duration for all products and cart items.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/CartDrawer.tsx",
+        "frontend/src/components/ProductCard.tsx",
+        "frontend/src/components/ProductGrid.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-24"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-visible-investigation-proof-messenger-group-link-in-the-storefront-ui-that-opens-the-messenger-group-join-url-in-a-new-tab-https-m-me-j-abzu2oshvatms0wn",
+      "featureTitle": "Add a visible “Investigation / Proof (Messenger Group)” link in the storefront UI that opens the Messenger group join URL in a new tab: https://m.me/j/AbZu2osHvaTmS0WN/",
+      "files": [
+        "frontend/src/components/Footer.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-25"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-expand-the-product-catalog-to-include-the-following-additional-services-in-the-product-grid-chatgpt-gemini-facebook-toffee-chorki-deepto-pay-bioscope-iscreen-hoichoi-pubg-free-fire-adobe-creative-canva-truecaller-camscanner-each-new-service-must-display-its-official-logo-image-on-the-product-card",
+      "featureTitle": "Expand the product catalog to include the following additional services in the product grid: ChatGPT, Gemini, Facebook, Toffee, Chorki, Deepto Pay, Bioscope, iScreen, Hoichoi, PUBG, Free Fire, Adobe Creative, Canva, Truecaller, CamScanner. Each new service must display its official logo image on the product card.",
+      "files": [
+        "frontend/src/components/ProductGrid.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-26"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-restrict-visible-numeric-pricing-to-only-chess-com-diamond-membership-and-netflix-premium-for-all-other-products-including-existing-spotify-and-youtube-premium-plus-all-newly-added-services-hide-numeric-prices-and-instead-show-clickable-prize-text-that-opens-whatsapp-https-wa-me-8801326060586-with-a-pre-filled-query-message-for-that-product",
+      "featureTitle": "Restrict visible numeric pricing to only Chess.com Diamond Membership and Netflix Premium. For all other products (including existing Spotify and YouTube Premium, plus all newly added services), hide numeric prices and instead show clickable “(prize)” text that opens WhatsApp (https://wa.me/8801326060586) with a pre-filled query message for that product.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/CartDrawer.tsx",
+        "frontend/src/components/ProductCard.tsx",
+        "frontend/src/components/ProductGrid.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-27"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-ensure-the-chess-com-product-card-uses-an-official-chess-com-logo-asset-replacing-the-current-chess-com-artwork-if-needed-and-update-the-product-data-to-reference-the-new-asset-path-consistently",
+      "featureTitle": "Ensure the Chess.com product card uses an official Chess.com logo asset (replacing the current Chess.com artwork if needed) and update the product data to reference the new asset path consistently.",
+      "files": [
+        "frontend/src/components/ProductGrid.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-28"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

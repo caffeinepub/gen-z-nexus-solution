@@ -1,0 +1,143 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-14T11:36:00.427Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 5,
+    "implemented": 5,
+    "items": [
+      {
+        "id": "REQ-24",
+        "summary": "Remove the “3 Month” duration option across the storefront and keep only a single “1 Month” duration for all products and cart items.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/App.tsx",
+          "frontend/src/components/ProductCard.tsx",
+          "frontend/src/components/ProductGrid.tsx",
+          "frontend/src/components/CartDrawer.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/App.tsx",
+          "frontend/src/components/ProductCard.tsx",
+          "frontend/src/components/ProductGrid.tsx",
+          "frontend/src/components/CartDrawer.tsx"
+        ]
+      },
+      {
+        "id": "REQ-25",
+        "summary": "Add a visible “Investigation / Proof (Messenger Group)” link in the storefront UI that opens the Messenger group join URL in a new tab: https://m.me/j/AbZu2osHvaTmS0WN/",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/Footer.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/Footer.tsx"
+        ]
+      },
+      {
+        "id": "REQ-26",
+        "summary": "Expand the product catalog to include the following additional services in the product grid: ChatGPT, Gemini, Facebook, Toffee, Chorki, Deepto Pay, Bioscope, iScreen, Hoichoi, PUBG, Free Fire, Adobe Creative, Canva, Truecaller, CamScanner. Each new service must display its official logo image on the product card.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/ProductGrid.tsx",
+          "frontend/public/assets/generated/chatgpt-logo.dim_512x512.png",
+          "frontend/public/assets/generated/gemini-logo.dim_512x512.png",
+          "frontend/public/assets/generated/facebook-logo.dim_512x512.png",
+          "frontend/public/assets/generated/toffee-logo.dim_512x512.png",
+          "frontend/public/assets/generated/chorki-logo.dim_512x512.png",
+          "frontend/public/assets/generated/deeptopay-logo.dim_512x512.png",
+          "frontend/public/assets/generated/bioscope-logo.dim_512x512.png",
+          "frontend/public/assets/generated/iscreen-logo.dim_512x512.png",
+          "frontend/public/assets/generated/hoichoi-logo.dim_512x512.png",
+          "frontend/public/assets/generated/pubg-logo.dim_512x512.png",
+          "frontend/public/assets/generated/freefire-logo.dim_512x512.png",
+          "frontend/public/assets/generated/adobe-creative-logo.dim_512x512.png",
+          "frontend/public/assets/generated/canva-logo.dim_512x512.png",
+          "frontend/public/assets/generated/truecaller-logo.dim_512x512.png",
+          "frontend/public/assets/generated/camscanner-logo.dim_512x512.png"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/ProductGrid.tsx",
+          "frontend/public/assets/generated/chatgpt-logo.dim_512x512.png",
+          "frontend/public/assets/generated/gemini-logo.dim_512x512.png",
+          "frontend/public/assets/generated/facebook-logo.dim_512x512.png",
+          "frontend/public/assets/generated/toffee-logo.dim_512x512.png",
+          "frontend/public/assets/generated/chorki-logo.dim_512x512.png",
+          "frontend/public/assets/generated/deeptopay-logo.dim_512x512.png",
+          "frontend/public/assets/generated/bioscope-logo.dim_512x512.png",
+          "frontend/public/assets/generated/iscreen-logo.dim_512x512.png",
+          "frontend/public/assets/generated/hoichoi-logo.dim_512x512.png",
+          "frontend/public/assets/generated/pubg-logo.dim_512x512.png",
+          "frontend/public/assets/generated/freefire-logo.dim_512x512.png",
+          "frontend/public/assets/generated/adobe-creative-logo.dim_512x512.png",
+          "frontend/public/assets/generated/canva-logo.dim_512x512.png",
+          "frontend/public/assets/generated/truecaller-logo.dim_512x512.png"
+        ]
+      },
+      {
+        "id": "REQ-27",
+        "summary": "Restrict visible numeric pricing to only Chess.com Diamond Membership and Netflix Premium. For all other products (including existing Spotify and YouTube Premium, plus all newly added services), hide numeric prices and instead show clickable “(prize)” text that opens WhatsApp (https://wa.me/8801326060586) with a pre-filled query message for that product.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/ProductGrid.tsx",
+          "frontend/src/components/ProductCard.tsx",
+          "frontend/src/App.tsx",
+          "frontend/src/components/CartDrawer.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/ProductGrid.tsx",
+          "frontend/src/components/ProductCard.tsx",
+          "frontend/src/App.tsx",
+          "frontend/src/components/CartDrawer.tsx"
+        ]
+      },
+      {
+        "id": "REQ-28",
+        "summary": "Ensure the Chess.com product card uses an official Chess.com logo asset (replacing the current Chess.com artwork if needed) and update the product data to reference the new asset path consistently.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/public/assets/generated/chesscom-logo-official.dim_512x512.png",
+          "frontend/src/components/ProductGrid.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/public/assets/generated/chesscom-logo-official.dim_512x512.png",
+          "frontend/src/components/ProductGrid.tsx"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "build-request.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/public/assets/generated/adobe-creative-logo.dim_512x512.png",
+    "frontend/public/assets/generated/bioscope-logo.dim_512x512.png",
+    "frontend/public/assets/generated/canva-logo.dim_512x512.png",
+    "frontend/public/assets/generated/chatgpt-logo.dim_512x512.png",
+    "frontend/public/assets/generated/chesscom-logo-official.dim_512x512.png",
+    "frontend/public/assets/generated/chorki-logo.dim_512x512.png",
+    "frontend/public/assets/generated/deeptopay-logo.dim_512x512.png",
+    "frontend/public/assets/generated/facebook-logo.dim_512x512.png",
+    "frontend/public/assets/generated/freefire-logo.dim_512x512.png",
+    "frontend/public/assets/generated/gemini-logo.dim_512x512.png",
+    "frontend/public/assets/generated/hoichoi-logo.dim_512x512.png",
+    "frontend/public/assets/generated/iscreen-logo.dim_512x512.png",
+    "frontend/public/assets/generated/pubg-logo.dim_512x512.png",
+    "frontend/public/assets/generated/toffee-logo.dim_512x512.png",
+    "frontend/public/assets/generated/truecaller-logo.dim_512x512.png",
+    "frontend/src/App.tsx",
+    "frontend/src/components/CartDrawer.tsx",
+    "frontend/src/components/Footer.tsx",
+    "frontend/src/components/ProductCard.tsx",
+    "frontend/src/components/ProductGrid.tsx",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

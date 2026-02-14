@@ -1,0 +1,198 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Catalog expansion, duration simplification, Messenger link, and price inquiry behavior",
+  "requirements": [
+    {
+      "id": "REQ-24",
+      "summary": "Remove the 3 Month duration option and enforce a single 1 Month duration across product cards, cart, and WhatsApp messages.",
+      "acceptanceCriteria": [
+        "Product cards no longer render a duration toggle with “3 Month”.",
+        "Cart items no longer store or display a “3 Month” duration value; the duration is always “1 Month”.",
+        "WhatsApp message generation for Buy Now/Checkout no longer includes a selectable duration beyond “1 Month”.",
+        "TypeScript types compile without union types that include “3 Month”."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Update CartItem type to remove the '3 Month' union and ensure addToCart always stores duration as '1 Month' (and remove duration from cart item id composition where applicable)."
+        },
+        {
+          "path": "frontend/src/components/ProductCard.tsx",
+          "operation": "modify",
+          "description": "Remove the duration Tabs UI and related state/logic; ensure Buy Now WhatsApp message always uses '1 Month' without offering any alternate duration. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/ProductGrid.tsx",
+          "operation": "modify",
+          "description": "Update Product type and product data to eliminate any '3 Month' pricing fields and ensure only a single '1 Month' pricing is represented where needed."
+        },
+        {
+          "path": "frontend/src/components/CartDrawer.tsx",
+          "operation": "modify",
+          "description": "Update cart line item rendering and WhatsApp checkout message generation to remove any reference to '3 Month' and only include '1 Month'. Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-25",
+      "summary": "Add an “Investigation / Proof (Messenger Group)” link that opens the provided Messenger join URL in a new tab.",
+      "acceptanceCriteria": [
+        "A link labeled exactly “Investigation / Proof (Messenger Group)” is visible in the UI (e.g., Footer Quick Links section).",
+        "Clicking the link opens https://m.me/j/AbZu2osHvaTmS0WN/ in a new tab with proper rel attributes (noopener/noreferrer)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/Footer.tsx",
+          "operation": "modify",
+          "description": "Add a visible Quick Links item labeled exactly “Investigation / Proof (Messenger Group)” that opens https://m.me/j/AbZu2osHvaTmS0WN/ in a new tab with rel=\"noopener noreferrer\"."
+        }
+      ]
+    },
+    {
+      "id": "REQ-26",
+      "summary": "Expand the product grid to include new services and show each one with its official logo from static generated assets.",
+      "acceptanceCriteria": [
+        "All listed new services appear as cards in the product grid and are discoverable via the existing search filter.",
+        "Each new service card displays an image loaded from a static asset under /assets/generated/ and falls back to the placeholder initial if the image fails to load.",
+        "No existing products are removed from the grid unless explicitly required by other requirements."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/ProductGrid.tsx",
+          "operation": "modify",
+          "description": "Extend the in-file product catalog to add: ChatGPT, Gemini, Facebook, Toffee, Chorki, Deepto Pay, Bioscope, iScreen, Hoichoi, PUBG, Free Fire, Adobe Creative, Canva, Truecaller, CamScanner; set each product image to the corresponding static path under /assets/generated/."
+        },
+        {
+          "path": "frontend/public/assets/generated/chatgpt-logo.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the generated static logo asset for ChatGPT at frontend/public/assets/generated/chatgpt-logo.dim_512x512.png and reference it from product data."
+        },
+        {
+          "path": "frontend/public/assets/generated/gemini-logo.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the generated static logo asset for Gemini at frontend/public/assets/generated/gemini-logo.dim_512x512.png and reference it from product data."
+        },
+        {
+          "path": "frontend/public/assets/generated/facebook-logo.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the generated static logo asset for Facebook at frontend/public/assets/generated/facebook-logo.dim_512x512.png and reference it from product data."
+        },
+        {
+          "path": "frontend/public/assets/generated/toffee-logo.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the generated static logo asset for Toffee at frontend/public/assets/generated/toffee-logo.dim_512x512.png and reference it from product data."
+        },
+        {
+          "path": "frontend/public/assets/generated/chorki-logo.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the generated static logo asset for Chorki at frontend/public/assets/generated/chorki-logo.dim_512x512.png and reference it from product data."
+        },
+        {
+          "path": "frontend/public/assets/generated/deeptopay-logo.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the generated static logo asset for Deepto Pay at frontend/public/assets/generated/deeptopay-logo.dim_512x512.png and reference it from product data."
+        },
+        {
+          "path": "frontend/public/assets/generated/bioscope-logo.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the generated static logo asset for Bioscope at frontend/public/assets/generated/bioscope-logo.dim_512x512.png and reference it from product data."
+        },
+        {
+          "path": "frontend/public/assets/generated/iscreen-logo.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the generated static logo asset for iScreen at frontend/public/assets/generated/iscreen-logo.dim_512x512.png and reference it from product data."
+        },
+        {
+          "path": "frontend/public/assets/generated/hoichoi-logo.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the generated static logo asset for Hoichoi at frontend/public/assets/generated/hoichoi-logo.dim_512x512.png and reference it from product data."
+        },
+        {
+          "path": "frontend/public/assets/generated/pubg-logo.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the generated static logo asset for PUBG at frontend/public/assets/generated/pubg-logo.dim_512x512.png and reference it from product data."
+        },
+        {
+          "path": "frontend/public/assets/generated/freefire-logo.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the generated static logo asset for Free Fire at frontend/public/assets/generated/freefire-logo.dim_512x512.png and reference it from product data."
+        },
+        {
+          "path": "frontend/public/assets/generated/adobe-creative-logo.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the generated static logo asset for Adobe Creative at frontend/public/assets/generated/adobe-creative-logo.dim_512x512.png and reference it from product data."
+        },
+        {
+          "path": "frontend/public/assets/generated/canva-logo.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the generated static logo asset for Canva at frontend/public/assets/generated/canva-logo.dim_512x512.png and reference it from product data."
+        },
+        {
+          "path": "frontend/public/assets/generated/truecaller-logo.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the generated static logo asset for Truecaller at frontend/public/assets/generated/truecaller-logo.dim_512x512.png and reference it from product data."
+        },
+        {
+          "path": "frontend/public/assets/generated/camscanner-logo.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the generated static logo asset for CamScanner at frontend/public/assets/generated/camscanner-logo.dim_512x512.png and reference it from product data."
+        }
+      ]
+    },
+    {
+      "id": "REQ-27",
+      "summary": "Show numeric prices only for Netflix Premium and Chess.com Diamond Membership; for all other products replace price display and purchase actions with WhatsApp inquiry via “(prize)”.",
+      "acceptanceCriteria": [
+        "Only Netflix Premium and Chess.com Diamond Membership show crossed-out original price, current price, and total price values in Tk.",
+        "Spotify, YouTube Premium, and all newly added services do not display any numeric currency values anywhere on the product card (including totals).",
+        "For non-priced products, the UI shows exactly “(prize)” in the price area, styled like a link/button, and clicking it opens https://wa.me/8801326060586 in a new tab with a URL-encoded message that includes at least the product name and a “price inquiry” intent.",
+        "Non-priced products do not allow Add to Cart/Buy It Now flows that require numeric totals; if those actions remain visible, they must route to the same WhatsApp inquiry behavior without showing numeric amounts."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/ProductGrid.tsx",
+          "operation": "modify",
+          "description": "Adjust product data/model to support two kinds of products: priced (Netflix, Chess.com) and inquiry-only (all others); ensure inquiry-only products do not require numeric price fields for rendering."
+        },
+        {
+          "path": "frontend/src/components/ProductCard.tsx",
+          "operation": "modify",
+          "description": "Conditionally render pricing: show numeric Tk prices (original/current/total) only for Netflix Premium and Chess.com Diamond Membership; for all other products render exactly “(prize)” in the price area and wire it to open https://wa.me/8801326060586 in a new tab with a URL-encoded inquiry message including product name and price inquiry intent; disable or reroute Add to Cart/Buy It Now to the same inquiry behavior without showing numeric amounts. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Ensure cart interactions remain valid with the new inquiry-only behavior (e.g., prevent adding inquiry-only products to cart so cart totals remain numeric-only for priced products)."
+        },
+        {
+          "path": "frontend/src/components/CartDrawer.tsx",
+          "operation": "modify",
+          "description": "Keep cart UI and WhatsApp checkout message numeric-only by assuming cart contains only priced products; ensure no inquiry-only products can introduce hidden numeric display requirements. Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-28",
+      "summary": "Replace Chess.com product artwork with an official Chess.com logo asset and reference it consistently from product data.",
+      "acceptanceCriteria": [
+        "Chess.com Diamond Membership displays the updated Chess.com logo from /assets/generated/ without broken images.",
+        "The product’s image path in the product data matches the generated filename exactly and is used by ProductCard’s <img> rendering.",
+        "If an uploaded reference image was provided, the generated asset visually matches it (clean, logo-like, transparent/flat-friendly)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/generated/chesscom-logo-official.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the generated official-style Chess.com logo at frontend/public/assets/generated/chesscom-logo-official.dim_512x512.png for use by the Chess.com product card."
+        },
+        {
+          "path": "frontend/src/components/ProductGrid.tsx",
+          "operation": "modify",
+          "description": "Update Chess.com Diamond Membership product data to reference /assets/generated/chesscom-logo-official.dim_512x512.png exactly (replacing any previous Chess.com image path)."
+        }
+      ]
+    }
+  ]
+}
