@@ -9,8 +9,11 @@ interface Product {
   currentPrice?: number;
   rating: number;
   image: string;
+  fallbackImage?: string;
   price?: number;
   isPriced: boolean;
+  duration?: string;
+  currencyLabel?: string;
 }
 
 const products: Product[] = [
@@ -22,17 +25,22 @@ const products: Product[] = [
     rating: 4.8,
     image: '/assets/generated/netflix-logo.dim_512x512.png',
     price: 1550,
-    isPriced: true
+    isPriced: true,
+    duration: '1 Month',
+    currencyLabel: 'Tk'
   },
   {
     id: 'chess',
     name: 'Chess.com Diamond Membership',
-    originalPrice: 1250,
+    originalPrice: 1200,
     currentPrice: 970,
     rating: 4.6,
-    image: '/assets/generated/chesscom-logo-official.dim_512x512.png',
+    image: 'https://lh3.googleusercontent.com/pw/AP1GczPrM5qCg1h5oVf-E-Y7O_9G9-o8yN_2m_7v-S_w-O_z-F_w-F_w-F_w-F_w-F_w-F_w-F_w-F_w-F_w=w256-h256',
+    fallbackImage: '/assets/generated/chesscom-logo-remote-fallback.dim_512x512.png',
     price: 970,
-    isPriced: true
+    isPriced: true,
+    duration: '1 Year',
+    currencyLabel: 'BDT'
   },
   {
     id: 'spotify',

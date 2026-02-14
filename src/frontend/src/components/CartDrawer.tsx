@@ -20,14 +20,17 @@ interface CartDrawerProps {
 
 export function CartDrawer({ isOpen, onClose, cart, onRemoveItem }: CartDrawerProps) {
   const totalPrice = cart.reduce((sum, item) => sum + item.price, 0);
+  
+  // Determine currency label for total (use first item's currency or default to Tk)
+  const totalCurrencyLabel = cart.length > 0 ? cart[0].currencyLabel : 'Tk';
 
   const handleCheckout = () => {
     const items = cart.map(item => 
-      `${item.productName} (1 Month) x${item.quantity} - Tk ${item.price}`
+      `${item.productName} (${item.duration}) x${item.quantity} - ${item.currencyLabel} ${item.price}`
     ).join('\n');
     
     const message = encodeURIComponent(
-      `Hi! I want to checkout:\n\n${items}\n\nTotal: Tk ${totalPrice}`
+      `Hi! I want to checkout:\n\n${items}\n\nTotal: ${totalCurrencyLabel} ${totalPrice}`
     );
     
     window.open(`https://wa.me/8801326060586?text=${message}`, '_blank');
@@ -52,9 +55,9 @@ export function CartDrawer({ isOpen, onClose, cart, onRemoveItem }: CartDrawerPr
                   <div className="flex-1">
                     <h4 className="font-semibold">{item.productName}</h4>
                     <p className="text-sm text-muted-foreground">
-                      1 Month × {item.quantity}
+                      {item.duration} × {item.quantity}
                     </p>
-                    <p className="font-semibold mt-1">Tk {item.price}</p>
+                    <p className="font-semibold mt-1">{item.currencyLabel} {item.price}</p>
                   </div>
                   <Button
                     variant="ghost"
@@ -74,7 +77,7 @@ export function CartDrawer({ isOpen, onClose, cart, onRemoveItem }: CartDrawerPr
             <div className="w-full space-y-4">
               <div className="flex justify-between text-lg font-bold">
                 <span>Total:</span>
-                <span>Tk {totalPrice}</span>
+                <span>{totalCurrencyLabel} {totalPrice}</span>
               </div>
               <Button className="w-full" size="lg" onClick={handleCheckout}>
                 Checkout via WhatsApp

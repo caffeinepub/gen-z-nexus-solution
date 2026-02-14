@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 13,
-  "summary": "Expand the storefront catalog beyond the original 4 products by adding multiple new services with official logos; remove the 3‑month duration option; add a Messenger group join link for investigation/proof; and change pricing visibility so only Chess.com and Netflix show prices while other services hide prices and use a WhatsApp-linked “(prize)” text for queries.",
+  "projectStateVersion": 23,
+  "summary": "Update the storefront product section: Chess.com uses a specific provided logo URL (with fallback to uploading into site assets if the URL fails), switches duration from monthly to a 1 Year option, and updates pricing to 1200 BDT regular / 970 BDT offer; additionally, Netflix/Spotify/YouTube Premium should use automatically fetched official high-resolution logos while maintaining consistent premium dark card styling with working quantity controls and WhatsApp-linked Buy Now.",
   "architectural_notes": [
     "Single-page storefront with client-side JavaScript for UI interactions (search filter, cart count, dynamic pricing, toast).",
     "WhatsApp direct-buy flow builds a URL-encoded prefilled message and redirects to wa.me/8801326060586.",
@@ -10,14 +10,16 @@
     "Include official product images/logos on product cards (Chess.com, Netflix, Spotify, YouTube) and ensure assets are optimized for fast loading/responsive display.",
     "Add support for products/services with hidden pricing: render a clickable “(prize)” label that redirects to WhatsApp for price queries; only Chess.com and Netflix display numeric prices.",
     "Add a UI element linking to a Messenger group join URL for investigation/proof (https://m.me/j/AbZu2osHvaTmS0WN/).",
-    "Remove the 3-month duration option from product configuration (only 1-month remains)."
+    "Remove the 3-month duration option from product configuration (only 1-month remains).",
+    "Chess.com logo asset should be replaceable: update the product data/image path to use the latest provided Chess.com logo while keeping image fallback behavior intact.",
+    "Chess.com Diamond Membership logo must use the user-provided image exactly as-is (no edits/changes to the picture details)."
   ],
   "known_issues": [
     "Deployment failed with error: domain gen-z_nexus_solution must be 5–50 characters and contain only letters, numbers, and hyphens (underscore not allowed).",
     "Unable to go live due to deployment error (needs fix and redeploy)."
   ],
   "isFixRequest": false,
-  "imageRequirements": "## Required Images\n- Chess.com official-style logo on transparent background (chesscom-logo-official.dim_512x512.png)\n- ChatGPT official-style logo on transparent background (chatgpt-logo.dim_512x512.png)\n- Gemini official-style logo on transparent background (gemini-logo.dim_512x512.png)\n- Facebook official-style logo on transparent background (facebook-logo.dim_512x512.png)\n- Toffee official-style logo on transparent background (toffee-logo.dim_512x512.png)\n- Chorki official-style logo on transparent background (chorki-logo.dim_512x512.png)\n- Deepto Pay official-style logo on transparent background (deeptopay-logo.dim_512x512.png)\n- Bioscope official-style logo on transparent background (bioscope-logo.dim_512x512.png)\n- iScreen official-style logo on transparent background (iscreen-logo.dim_512x512.png)\n- Hoichoi official-style logo on transparent background (hoichoi-logo.dim_512x512.png)\n- PUBG official-style logo on transparent background (pubg-logo.dim_512x512.png)\n- Free Fire official-style logo on transparent background (freefire-logo.dim_512x512.png)\n- Adobe Creative official-style logo on transparent background (adobe-creative-logo.dim_512x512.png)\n- Canva official-style logo on transparent background (canva-logo.dim_512x512.png)\n- Truecaller official-style logo on transparent background (truecaller-logo.dim_512x512.png)\n- CamScanner official-style logo on transparent background (camscanner-logo.dim_512x512.png)",
+  "imageRequirements": "## Required Images\n- Chess.com official logo (chesscom-logo-remote-fallback.dim_512x512.png)\n\n## Edit Images\n- Replace with official high-resolution Netflix branding logo (netflix-logo.dim_512x512.png > netflix-logo.dim_512x512.png)\n- Replace with official high-resolution Spotify branding logo (spotify-logo.dim_512x512.png > spotify-logo.dim_512x512.png)\n- Replace with official high-resolution YouTube Premium branding logo (youtube-logo.dim_512x512.png > youtube-logo.dim_512x512.png)",
   "existing_features": [
     {
       "id": "feature-create-the-main-storefront-page-for-the-e-commerce-subscription-store-named-gen-z-nexus-solution-with-a-dark-slate-premium-theme-and-red-accents-applied-consistently-across-all-sections-typography-buttons-cards-badges-inputs",
@@ -242,6 +244,94 @@
         "REQ-28"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-add-the-user-provided-chess-com-logo-image-as-a-new-static-asset-under-frontend-public-assets-generated-and-ensure-it-is-a-512x512-png-suitable-for-use-as-a-product-card-logo",
+      "title": "Add the user-provided Chess.com logo image as a new static asset under `frontend/public/assets/generated/` and ensure it is a 512x512 PNG suitable for use as a product card logo.",
+      "reqIds": [
+        "REQ-29"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-frontend-src-components-productgrid-tsx-so-the-chess-com-diamond-membership-product-id-chess-uses-the-new-chess-com-logo-asset-path-assets-generated-chesscom-logo-user-dim-512x512-png",
+      "title": "Update `frontend/src/components/ProductGrid.tsx` so the Chess.com Diamond Membership product (`id: 'chess'`) uses the new Chess.com logo asset path `/assets/generated/chesscom-logo-user.dim_512x512.png`.",
+      "reqIds": [
+        "REQ-30"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-the-newly-uploaded-chess-com-image-images-2-jpeg-as-a-static-generated-asset-under-frontend-public-assets-generated-as-a-square-512x512-png-suitable-for-use-as-the-chess-com-product-card-artwork",
+      "title": "Add the newly uploaded Chess.com image (images-2.jpeg) as a static generated asset under `frontend/public/assets/generated/` as a square 512x512 PNG, suitable for use as the Chess.com product card artwork.",
+      "reqIds": [
+        "REQ-31"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-frontend-src-components-productgrid-tsx-so-the-chess-com-diamond-membership-product-id-chess-uses-the-new-asset-path-assets-generated-chesscom-logo-user-v2-dim-512x512-png-for-its-image-field",
+      "title": "Update `frontend/src/components/ProductGrid.tsx` so the Chess.com Diamond Membership product (`id: 'chess'`) uses the new asset path `/assets/generated/chesscom-logo-user-v2.dim_512x512.png` for its `image` field.",
+      "reqIds": [
+        "REQ-32"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-the-user-uploaded-image-images-3-jpeg-as-a-new-static-asset-under-frontend-public-assets-generated-for-use-as-the-chess-com-diamond-membership-logo-preserving-the-image-s-visual-details-exactly-no-edits-retouching-changes-to-colors-shapes-or-contents",
+      "title": "Add the user-uploaded image `images-3.jpeg` as a new static asset under `frontend/public/assets/generated/` for use as the Chess.com Diamond Membership logo, preserving the image’s visual details exactly (no edits/retouching/changes to colors, shapes, or contents).",
+      "reqIds": [
+        "REQ-33"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-frontend-src-components-productgrid-tsx-so-the-chess-com-diamond-membership-product-id-chess-uses-the-newly-added-asset-assets-generated-chesscom-logo-user-v3-dim-512x512-png-in-its-image-field",
+      "title": "Update `frontend/src/components/ProductGrid.tsx` so the Chess.com Diamond Membership product (`id: 'chess'`) uses the newly added asset `/assets/generated/chesscom-logo-user-v3.dim_512x512.png` in its `image` field.",
+      "reqIds": [
+        "REQ-34"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-the-google-search-console-site-verification-file-so-it-is-served-from-the-site-root-path-create-a-new-static-file-named-google81cfc97330838765-html-in-the-frontend-static-public-assets-so-it-is-available-at-https-your-domain-google81cfc97330838765-html-and-set-the-file-contents-to-exactly-google-site-verification-google81cfc97330838765-html",
+      "title": "Add the Google Search Console site verification file so it is served from the site root path. Create a new static file named `google81cfc97330838765.html` in the frontend static/public assets (so it is available at `https://<your-domain>/google81cfc97330838765.html`) and set the file contents to exactly: `google-site-verification: google81cfc97330838765.html`.",
+      "reqIds": [
+        "REQ-35"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-chess-com-diamond-membership-product-configuration-in-frontend-src-components-productgrid-tsx-to-1-use-the-exact-remote-logo-url-https-lh3-googleusercontent-com-pw-ap1gczprm5qcg1h5ovf-e-y7o-9g9-o8yn-2m-7v-s-w-o-z-f-w-f-w-f-w-f-w-f-w-f-w-f-w-f-w-f-w-w256-h256-as-the-primary-image-2-change-its-duration-from-the-currently-hardcoded-monthly-duration-to-a-single-selectable-duration-labeled-exactly-1-year-and-3-set-pricing-to-regular-1200-bdt-and-offer-970-bdt-offer-price-is-used-for-totals",
+      "title": "Update the Chess.com Diamond Membership product configuration in `frontend/src/components/ProductGrid.tsx` to: (1) use the exact remote logo URL `https://lh3.googleusercontent.com/pw/AP1GczPrM5qCg1h5oVf-E-Y7O_9G9-o8yN_2m_7v-S_w-O_z-F_w-F_w-F_w-F_w-F_w-F_w-F_w-F_w-F_w=w256-h256` as the primary image, (2) change its duration from the currently hardcoded monthly duration to a single selectable duration labeled exactly \"1 Year\", and (3) set pricing to regular 1200 BDT and offer 970 BDT (offer price is used for totals).",
+      "reqIds": [
+        "REQ-36"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-robust-chess-com-logo-fallback-behavior-in-frontend-src-components-productcard-tsx-if-the-remote-chess-com-logo-url-fails-to-load-automatically-fall-back-to-a-locally-hosted-static-image-under-frontend-public-assets-generated-without-showing-a-broken-image-icon",
+      "title": "Implement robust Chess.com logo fallback behavior in `frontend/src/components/ProductCard.tsx`: if the remote Chess.com logo URL fails to load, automatically fall back to a locally hosted static image under `frontend/public/assets/generated/` (without showing a broken image icon).",
+      "reqIds": [
+        "REQ-37"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-refresh-the-product-logos-for-netflix-spotify-and-youtube-premium-to-use-official-high-resolution-branding-logos-not-generic-icons-or-old-banners-and-ensure-the-product-data-references-those-updated-assets-consistently",
+      "title": "Refresh the product logos for Netflix, Spotify, and YouTube Premium to use official high-resolution branding logos (not generic icons or old banners), and ensure the product data references those updated assets consistently.",
+      "reqIds": [
+        "REQ-38"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-product-card-interaction-consistency-across-all-products-quantity-and-buttons-work-reliably-minimum-quantity-1-and-buy-it-now-opens-whatsapp-chat-for-priced-products-using-https-wa-me-8801326060586-with-a-pre-filled-english-message-do-not-degrade-the-existing-premium-dark-styling",
+      "title": "Ensure product-card interaction consistency across all products: quantity \"+\" and \"-\" buttons work reliably (minimum quantity 1) and \"Buy It Now\" opens WhatsApp chat for priced products using `https://wa.me/8801326060586` with a pre-filled English message. Do not degrade the existing premium dark styling.",
+      "reqIds": [
+        "REQ-39"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -350,6 +440,42 @@
     {
       "id": "AR-19",
       "summary": "Restrict visible pricing to only Chess.com and Netflix (all other services should not show numeric prices)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-20",
+      "summary": "Replace the Chess.com product card logo with the user-provided Chess.com logo asset (update referenced image path accordingly)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-21",
+      "summary": "Add Google Search Console site verification file (google81cfc97330838765.html) with provided verification content to the deployed site",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-22",
+      "summary": "Update Chess.com product: use provided logo image URL with fallback to hosting the asset locally if the URL fails to load",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-23",
+      "summary": "Change Chess.com duration option from monthly to a single '1 Year' option (instead of months)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-24",
+      "summary": "Update Chess.com pricing to Regular 1200 BDT and Offer 970 BDT (ensure UI reflects crossed-out regular and current offer)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-25",
+      "summary": "Automatically fetch and use official high-resolution logos for Netflix, Spotify, and YouTube Premium (replace generic/old images)",
       "reqIds": [],
       "status": "pending"
     }

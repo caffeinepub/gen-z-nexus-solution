@@ -2,8 +2,8 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-remove-the-3-month-duration-option-across-the-storefront-and-keep-only-a-single-1-month-duration-for-all-products-and-cart-items",
-      "featureTitle": "Remove the “3 Month” duration option across the storefront and keep only a single “1 Month” duration for all products and cart items.",
+      "featureId": "feature-update-the-chess-com-diamond-membership-product-configuration-in-frontend-src-components-productgrid-tsx-to-1-use-the-exact-remote-logo-url-https-lh3-googleusercontent-com-pw-ap1gczprm5qcg1h5ovf-e-y7o-9g9-o8yn-2m-7v-s-w-o-z-f-w-f-w-f-w-f-w-f-w-f-w-f-w-f-w-f-w-w256-h256-as-the-primary-image-2-change-its-duration-from-the-currently-hardcoded-monthly-duration-to-a-single-selectable-duration-labeled-exactly-1-year-and-3-set-pricing-to-regular-1200-bdt-and-offer-970-bdt-offer-price-is-used-for-totals",
+      "featureTitle": "Update the Chess.com Diamond Membership product configuration in `frontend/src/components/ProductGrid.tsx` to: (1) use the exact remote logo URL `https://lh3.googleusercontent.com/pw/AP1GczPrM5qCg1h5oVf-E-Y7O_9G9-o8yN_2m_7v-S_w-O_z-F_w-F_w-F_w-F_w-F_w-F_w-F_w-F_w-F_w=w256-h256` as the primary image, (2) change its duration from the currently hardcoded monthly duration to a single selectable duration labeled exactly \"1 Year\", and (3) set pricing to regular 1200 BDT and offer 970 BDT (offer price is used for totals).",
       "files": [
         "frontend/src/App.tsx",
         "frontend/src/components/CartDrawer.tsx",
@@ -18,52 +18,14 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-24"
+        "REQ-36"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-add-a-visible-investigation-proof-messenger-group-link-in-the-storefront-ui-that-opens-the-messenger-group-join-url-in-a-new-tab-https-m-me-j-abzu2oshvatms0wn",
-      "featureTitle": "Add a visible “Investigation / Proof (Messenger Group)” link in the storefront UI that opens the Messenger group join URL in a new tab: https://m.me/j/AbZu2osHvaTmS0WN/",
+      "featureId": "feature-implement-robust-chess-com-logo-fallback-behavior-in-frontend-src-components-productcard-tsx-if-the-remote-chess-com-logo-url-fails-to-load-automatically-fall-back-to-a-locally-hosted-static-image-under-frontend-public-assets-generated-without-showing-a-broken-image-icon",
+      "featureTitle": "Implement robust Chess.com logo fallback behavior in `frontend/src/components/ProductCard.tsx`: if the remote Chess.com logo URL fails to load, automatically fall back to a locally hosted static image under `frontend/public/assets/generated/` (without showing a broken image icon).",
       "files": [
-        "frontend/src/components/Footer.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-25"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-expand-the-product-catalog-to-include-the-following-additional-services-in-the-product-grid-chatgpt-gemini-facebook-toffee-chorki-deepto-pay-bioscope-iscreen-hoichoi-pubg-free-fire-adobe-creative-canva-truecaller-camscanner-each-new-service-must-display-its-official-logo-image-on-the-product-card",
-      "featureTitle": "Expand the product catalog to include the following additional services in the product grid: ChatGPT, Gemini, Facebook, Toffee, Chorki, Deepto Pay, Bioscope, iScreen, Hoichoi, PUBG, Free Fire, Adobe Creative, Canva, Truecaller, CamScanner. Each new service must display its official logo image on the product card.",
-      "files": [
-        "frontend/src/components/ProductGrid.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-26"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-restrict-visible-numeric-pricing-to-only-chess-com-diamond-membership-and-netflix-premium-for-all-other-products-including-existing-spotify-and-youtube-premium-plus-all-newly-added-services-hide-numeric-prices-and-instead-show-clickable-prize-text-that-opens-whatsapp-https-wa-me-8801326060586-with-a-pre-filled-query-message-for-that-product",
-      "featureTitle": "Restrict visible numeric pricing to only Chess.com Diamond Membership and Netflix Premium. For all other products (including existing Spotify and YouTube Premium, plus all newly added services), hide numeric prices and instead show clickable “(prize)” text that opens WhatsApp (https://wa.me/8801326060586) with a pre-filled query message for that product.",
-      "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/components/CartDrawer.tsx",
         "frontend/src/components/ProductCard.tsx",
         "frontend/src/components/ProductGrid.tsx"
       ],
@@ -75,13 +37,13 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-27"
+        "REQ-37"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-ensure-the-chess-com-product-card-uses-an-official-chess-com-logo-asset-replacing-the-current-chess-com-artwork-if-needed-and-update-the-product-data-to-reference-the-new-asset-path-consistently",
-      "featureTitle": "Ensure the Chess.com product card uses an official Chess.com logo asset (replacing the current Chess.com artwork if needed) and update the product data to reference the new asset path consistently.",
+      "featureId": "feature-refresh-the-product-logos-for-netflix-spotify-and-youtube-premium-to-use-official-high-resolution-branding-logos-not-generic-icons-or-old-banners-and-ensure-the-product-data-references-those-updated-assets-consistently",
+      "featureTitle": "Refresh the product logos for Netflix, Spotify, and YouTube Premium to use official high-resolution branding logos (not generic icons or old banners), and ensure the product data references those updated assets consistently.",
       "files": [
         "frontend/src/components/ProductGrid.tsx"
       ],
@@ -93,7 +55,26 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-28"
+        "REQ-38"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-ensure-product-card-interaction-consistency-across-all-products-quantity-and-buttons-work-reliably-minimum-quantity-1-and-buy-it-now-opens-whatsapp-chat-for-priced-products-using-https-wa-me-8801326060586-with-a-pre-filled-english-message-do-not-degrade-the-existing-premium-dark-styling",
+      "featureTitle": "Ensure product-card interaction consistency across all products: quantity \"+\" and \"-\" buttons work reliably (minimum quantity 1) and \"Buy It Now\" opens WhatsApp chat for priced products using `https://wa.me/8801326060586` with a pre-filled English message. Do not degrade the existing premium dark styling.",
+      "files": [
+        "frontend/src/components/CartDrawer.tsx",
+        "frontend/src/components/ProductCard.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-39"
       ],
       "confidence": "high"
     }

@@ -1,141 +1,111 @@
 {
   "kind": "build_request",
-  "title": "Expand catalog, remove 3-month option, add Messenger group link, and hide prices for non-Netflix/Chess items",
+  "title": "Update Chess.com product (logo, 1 Year duration, BDT pricing) and refresh official logos for major services",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-24",
-      "text": "Remove the “3 Month” duration option across the storefront and keep only a single “1 Month” duration for all products and cart items.",
+      "id": "REQ-36",
+      "text": "Update the Chess.com Diamond Membership product configuration in `frontend/src/components/ProductGrid.tsx` to: (1) use the exact remote logo URL `https://lh3.googleusercontent.com/pw/AP1GczPrM5qCg1h5oVf-E-Y7O_9G9-o8yN_2m_7v-S_w-O_z-F_w-F_w-F_w-F_w-F_w-F_w-F_w-F_w-F_w=w256-h256` as the primary image, (2) change its duration from the currently hardcoded monthly duration to a single selectable duration labeled exactly \"1 Year\", and (3) set pricing to regular 1200 BDT and offer 970 BDT (offer price is used for totals).",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-1"
+          "msg-6"
         ],
         "quotes": [
-          "Remove 3 month option,"
+          "Logo: Use this exact image URL for Chess.com: https://lh3.googleusercontent.com/pw/AP1GczPrM5qCg1h5oVf-E-Y7O_9G9-o8yN_2m_7v-S_w-O_z-F_w-F_w-F_w-F_w-F_w-F_w-F_w-F_w-F_w=w256-h256",
+          "Duration Change: Change the quantity/duration option for Chess.com to '1 Year' instead of months.",
+          "Pricing: Regular price 1200 BDT, Offer price 970 BDT."
         ]
       },
       "acceptanceCriteria": [
-        "Product cards no longer render a duration toggle with “3 Month”.",
-        "Cart items no longer store or display a “3 Month” duration value; the duration is always “1 Month”.",
-        "WhatsApp message generation for Buy Now/Checkout no longer includes a selectable duration beyond “1 Month”.",
-        "TypeScript types compile without union types that include “3 Month”."
+        "Chess.com card shows crossed-out regular price \"BDT 1200\" and current/offer price \"BDT 970\".",
+        "Chess.com card’s total price calculation uses offer price (970) × quantity and displays as \"BDT\" (not \"Tk\") for Chess.com.",
+        "Chess.com product has a single duration option labeled exactly \"1 Year\" (no month-based label shown for Chess.com).",
+        "Clicking Chess.com “Buy It Now” opens WhatsApp with a pre-filled message containing Product name, Duration: 1 Year, Quantity, and Total in BDT.",
+        "Adding Chess.com to cart stores duration as \"1 Year\" and cart UI/checkout message shows \"1 Year\" (not \"1 Month\") for that item."
       ]
     },
     {
-      "id": "REQ-25",
-      "text": "Add a visible “Investigation / Proof (Messenger Group)” link in the storefront UI that opens the Messenger group join URL in a new tab: https://m.me/j/AbZu2osHvaTmS0WN/",
+      "id": "REQ-37",
+      "text": "Implement robust Chess.com logo fallback behavior in `frontend/src/components/ProductCard.tsx`: if the remote Chess.com logo URL fails to load, automatically fall back to a locally hosted static image under `frontend/public/assets/generated/` (without showing a broken image icon).",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-1"
+          "msg-6"
         ],
         "quotes": [
-          "Add a messenger group joining link for investigation, proof .  Link:- https://m.me/j/AbZu2osHvaTmS0WN/"
+          "(Note: If this URL doesn't work, please upload the image file to your site's assets and use that path)."
         ]
       },
       "acceptanceCriteria": [
-        "A link labeled exactly “Investigation / Proof (Messenger Group)” is visible in the UI (e.g., Footer Quick Links section).",
-        "Clicking the link opens https://m.me/j/AbZu2osHvaTmS0WN/ in a new tab with proper rel attributes (noopener/noreferrer)."
+        "When the Chess.com remote image fails to load (simulated by blocking the URL), the product card displays the local fallback image from `/assets/generated/...` instead of the letter placeholder or a broken image.",
+        "When the remote URL loads successfully, the local fallback is not used.",
+        "All user-facing alt text remains in English."
       ]
     },
     {
-      "id": "REQ-26",
-      "text": "Expand the product catalog to include the following additional services in the product grid: ChatGPT, Gemini, Facebook, Toffee, Chorki, Deepto Pay, Bioscope, iScreen, Hoichoi, PUBG, Free Fire, Adobe Creative, Canva, Truecaller, CamScanner. Each new service must display its official logo image on the product card.",
+      "id": "REQ-38",
+      "text": "Refresh the product logos for Netflix, Spotify, and YouTube Premium to use official high-resolution branding logos (not generic icons or old banners), and ensure the product data references those updated assets consistently.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-1"
+          "msg-6"
         ],
         "quotes": [
-          "Add more options like , chatgpt, gemini, Facebook, toffee, chorki, deepto pay, bioscope, iscreen,hoichoi, pubge , freefire ,adobe creative, canva , true caller , cam scanner ,  with their official logo"
+          "For all other subscription services (Netflix, Spotify, YouTube Premium), automatically fetch and use their official high-resolution branding logos instead of generic icons or old banners."
         ]
       },
       "acceptanceCriteria": [
-        "All listed new services appear as cards in the product grid and are discoverable via the existing search filter.",
-        "Each new service card displays an image loaded from a static asset under /assets/generated/ and falls back to the placeholder initial if the image fails to load.",
-        "No existing products are removed from the grid unless explicitly required by other requirements."
+        "Netflix, Spotify, and YouTube Premium cards display official, high-resolution logos with transparent/clean backgrounds suitable for the premium dark theme.",
+        "The logo assets are served as static files from `frontend/public/assets/generated/` and referenced via stable `/assets/generated/...` paths in `frontend/src/components/ProductGrid.tsx`.",
+        "No external runtime dependency is required to render these three logos (i.e., the logos still render when offline once the app is loaded)."
       ]
     },
     {
-      "id": "REQ-27",
-      "text": "Restrict visible numeric pricing to only Chess.com Diamond Membership and Netflix Premium. For all other products (including existing Spotify and YouTube Premium, plus all newly added services), hide numeric prices and instead show clickable “(prize)” text that opens WhatsApp (https://wa.me/8801326060586) with a pre-filled query message for that product.",
+      "id": "REQ-39",
+      "text": "Ensure product-card interaction consistency across all products: quantity \"+\" and \"-\" buttons work reliably (minimum quantity 1) and \"Buy It Now\" opens WhatsApp chat for priced products using `https://wa.me/8801326060586` with a pre-filled English message. Do not degrade the existing premium dark styling.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-1"
+          "msg-6"
         ],
         "quotes": [
-          "with their official logo & hide prizes in those... And fill with this text (prize) and (prize) tab link with WhatsApp,,, if anyone click on prize it will direct to WhatsApp for queries..",
-          "Only show chess. Com & netflix prizes"
+          "Ensure all product cards have the same premium dark style, working '+' and '-' quantity buttons, and a functional 'Buy it now' button linked to WhatsApp 8801326060586."
         ]
       },
       "acceptanceCriteria": [
-        "Only Netflix Premium and Chess.com Diamond Membership show crossed-out original price, current price, and total price values in Tk.",
-        "Spotify, YouTube Premium, and all newly added services do not display any numeric currency values anywhere on the product card (including totals).",
-        "For non-priced products, the UI shows exactly “(prize)” in the price area, styled like a link/button, and clicking it opens https://wa.me/8801326060586 in a new tab with a URL-encoded message that includes at least the product name and a “price inquiry” intent.",
-        "Non-priced products do not allow Add to Cart/Buy It Now flows that require numeric totals; if those actions remain visible, they must route to the same WhatsApp inquiry behavior without showing numeric amounts."
-      ]
-    },
-    {
-      "id": "REQ-28",
-      "text": "Ensure the Chess.com product card uses an official Chess.com logo asset (replacing the current Chess.com artwork if needed) and update the product data to reference the new asset path consistently.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-1"
-        ],
-        "quotes": [
-          "Add chess.com official logo ,,"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Chess.com Diamond Membership displays the updated Chess.com logo from /assets/generated/ without broken images.",
-        "The product’s image path in the product data matches the generated filename exactly and is used by ProductCard’s <img> rendering.",
-        "If an uploaded reference image was provided, the generated asset visually matches it (clean, logo-like, transparent/flat-friendly)."
+        "All product cards retain consistent premium dark styling (cards, badges, typography, and buttons).",
+        "Quantity decrement never goes below 1; increment always increases quantity.",
+        "For priced products, “Buy It Now” opens `https://wa.me/8801326060586?text=...` in a new tab with an English pre-filled message including Product, Duration, Quantity, and Total.",
+        "For unpriced products, the existing WhatsApp inquiry flow remains functional and does not show numeric pricing."
       ]
     }
   ],
   "constraints": [
-    "Use English for any user-facing text (except the literal requested “(prize)” string, which must remain exactly as requested).",
-    "Do not edit any files under frontend/src/components/ui or any paths listed as immutable in SYSTEM_CONTEXT.",
-    "Keep the backend as a single Motoko actor; no backend changes are required for this request.",
-    "All logos must be served as static assets from frontend/public/assets/generated and referenced by path from product data.",
-    "Preserve the existing WhatsApp base URL: https://wa.me/8801326060586.",
-    "Preserve the provided Messenger group join URL exactly: https://m.me/j/AbZu2osHvaTmS0WN/."
+    "Frontend immutable paths must not be edited: `frontend/src/hooks/useInternetIdentity.ts`, `frontend/src/hooks/useInternetIdentity.tsx`, `frontend/src/hooks/useActor.ts`, `frontend/src/main.tsx`, `frontend/src/components/ui`.",
+    "Keep all user-facing text in English.",
+    "Backend must remain single-actor; do not introduce additional backend services."
   ],
   "nonGoals": [
-    "Implementing real payments or a backend-driven product catalog.",
-    "Third-party authentication beyond existing Internet Identity scaffolding.",
-    "Creating or integrating real-time chat or Messenger APIs.",
-    "Adding multi-page routing or a separate admin panel."
+    "Implementing third-party authentication providers other than Internet Identity.",
+    "Adding a new database or external storage layer for products/logos.",
+    "Building real-time features (WebSockets, push notifications)."
   ],
   "imageRequirements": {
     "required": [
-      "Chess.com official-style logo on transparent background (chesscom-logo-official.dim_512x512.png)",
-      "ChatGPT official-style logo on transparent background (chatgpt-logo.dim_512x512.png)",
-      "Gemini official-style logo on transparent background (gemini-logo.dim_512x512.png)",
-      "Facebook official-style logo on transparent background (facebook-logo.dim_512x512.png)",
-      "Toffee official-style logo on transparent background (toffee-logo.dim_512x512.png)",
-      "Chorki official-style logo on transparent background (chorki-logo.dim_512x512.png)",
-      "Deepto Pay official-style logo on transparent background (deeptopay-logo.dim_512x512.png)",
-      "Bioscope official-style logo on transparent background (bioscope-logo.dim_512x512.png)",
-      "iScreen official-style logo on transparent background (iscreen-logo.dim_512x512.png)",
-      "Hoichoi official-style logo on transparent background (hoichoi-logo.dim_512x512.png)",
-      "PUBG official-style logo on transparent background (pubg-logo.dim_512x512.png)",
-      "Free Fire official-style logo on transparent background (freefire-logo.dim_512x512.png)",
-      "Adobe Creative official-style logo on transparent background (adobe-creative-logo.dim_512x512.png)",
-      "Canva official-style logo on transparent background (canva-logo.dim_512x512.png)",
-      "Truecaller official-style logo on transparent background (truecaller-logo.dim_512x512.png)",
-      "CamScanner official-style logo on transparent background (camscanner-logo.dim_512x512.png)"
+      "Chess.com official logo (chesscom-logo-remote-fallback.dim_512x512.png)"
     ],
-    "edits": []
+    "edits": [
+      "Replace with official high-resolution Netflix branding logo (netflix-logo.dim_512x512.png > netflix-logo.dim_512x512.png)",
+      "Replace with official high-resolution Spotify branding logo (spotify-logo.dim_512x512.png > spotify-logo.dim_512x512.png)",
+      "Replace with official high-resolution YouTube Premium branding logo (youtube-logo.dim_512x512.png > youtube-logo.dim_512x512.png)"
+    ]
   },
   "userProfileUpdate": {
     "goalsToAdd": [],
     "goalsToRemove": [],
     "preferencesToAdd": [
-      "Use English for any user-facing text"
+      "Use English for user-facing text"
     ],
     "preferencesToRemove": [],
     "miscToAdd": [],

@@ -15,9 +15,10 @@ import { ThemeProvider } from 'next-themes';
 export interface CartItem {
   id: string;
   productName: string;
-  duration: '1 Month';
+  duration: string;
   quantity: number;
   price: number;
+  currencyLabel: string;
 }
 
 function App() {

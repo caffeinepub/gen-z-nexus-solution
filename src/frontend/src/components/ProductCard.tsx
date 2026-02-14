@@ -13,8 +13,11 @@ interface Product {
   currentPrice?: number;
   rating: number;
   image: string;
+  fallbackImage?: string;
   price?: number;
   isPriced: boolean;
+  duration?: string;
+  currencyLabel?: string;
 }
 
 interface ProductCardProps {
@@ -25,20 +28,38 @@ interface ProductCardProps {
 export function ProductCard({ product, onAddToCart }: ProductCardProps) {
   const [quantity, setQuantity] = useState(1);
   const [imageError, setImageError] = useState(false);
+  const [fallbackError, setFallbackError] = useState(false);
 
+  const duration = product.duration || '1 Month';
+  const currencyLabel = product.currencyLabel || 'Tk';
   const totalPrice = product.isPriced && product.price ? product.price * quantity : 0;
+
+  const handleImageError = () => {
+    if (!imageError && product.fallbackImage) {
+      setImageError(true);
+    } else if (imageError && !fallbackError) {
+      setFallbackError(true);
+    }
+  };
+
+  const getCurrentImageSrc = () => {
+    if (!imageError) return product.image;
+    if (product.fallbackImage && !fallbackError) return product.fallbackImage;
+    return null;
+  };
 
   const handleAddToCart = () => {
     if (!product.isPriced || !product.price) return;
     
     onAddToCart({
       productName: product.name,
-      duration: '1 Month',
+      duration,
       quantity,
-      price: totalPrice
+      price: totalPrice,
+      currencyLabel
     });
     toast.success('Added to cart!', {
-      description: `${product.name} (1 Month) x${quantity}`
+      description: `${product.name} (${duration}) x${quantity}`
     });
   };
 
@@ -46,7 +67,7 @@ export function ProductCard({ product, onAddToCart }: ProductCardProps) {
     if (!product.isPriced || !product.price) return;
     
     const message = encodeURIComponent(
-      `Hi! I want to buy:\n\nProduct: ${product.name}\nDuration: 1 Month\nQuantity: ${quantity}\nTotal: Tk ${totalPrice}`
+      `Hi! I want to buy:\n\nProduct: ${product.name}\nDuration: ${duration}\nQuantity: ${quantity}\nTotal: ${currencyLabel} ${totalPrice}`
     );
     window.open(`https://wa.me/8801326060586?text=${message}`, '_blank');
   };
@@ -58,6 +79,16 @@ export function ProductCard({ product, onAddToCart }: ProductCardProps) {
     window.open(`https://wa.me/8801326060586?text=${message}`, '_blank', 'noopener,noreferrer');
   };
 
+  const handleDecrement = () => {
+    setQuantity(prev => Math.max(1, prev - 1));
+  };
+
+  const handleIncrement = () => {
+    setQuantity(prev => prev + 1);
+  };
+
+  const currentImageSrc = getCurrentImageSrc();
+
   return (
     <Card className="overflow-hidden hover:shadow-lg transition-shadow">
       <div className="relative">
@@ -65,12 +96,12 @@ export function ProductCard({ product, onAddToCart }: ProductCardProps) {
           Sale
         </Badge>
         <div className="aspect-square bg-muted flex items-center justify-center overflow-hidden">
-          {!imageError ? (
+          {currentImageSrc ? (
             <img
-              src={product.image}
+              src={currentImageSrc}
               alt={`${product.name} logo`}
               className="w-full h-full object-contain p-4"
-              onError={() => setImageError(true)}
+              onError={handleImageError}
             />
           ) : (
             <span className="text-4xl">{product.name[0]}</span>
@@ -100,10 +131,10 @@ export function ProductCard({ product, onAddToCart }: ProductCardProps) {
           <>
             <div className="flex items-center gap-2">
               <span className="text-sm line-through text-muted-foreground">
-                Tk {product.originalPrice}
+                {currencyLabel} {product.originalPrice}
               </span>
               <span className="text-xl font-bold text-destructive">
-                Tk {product.currentPrice}
+                {currencyLabel} {product.currentPrice}
               </span>
             </div>
 
@@ -111,7 +142,7 @@ export function ProductCard({ product, onAddToCart }: ProductCardProps) {
               <Button
                 variant="ghost"
                 size="icon"
-                onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                onClick={handleDecrement}
                 disabled={quantity <= 1}
               >
                 <Minus className="h-4 w-4" />
@@ -120,14 +151,14 @@ export function ProductCard({ product, onAddToCart }: ProductCardProps) {
               <Button
                 variant="ghost"
                 size="icon"
-                onClick={() => setQuantity(quantity + 1)}
+                onClick={handleIncrement}
               >
                 <Plus className="h-4 w-4" />
               </Button>
             </div>
 
             <div className="text-center font-bold text-lg">
-              Total: Tk {totalPrice}
+              Total: {currencyLabel} {totalPrice}
             </div>
           </>
         ) : (

@@ -1,13 +1,13 @@
 # Specification
 
 ## Summary
-**Goal:** Update the storefront catalog and pricing presentation by removing the 3-month duration, adding a Messenger group proof link, expanding the product grid with new services (with logos), and hiding numeric prices for all products except Netflix and Chess.com.
+**Goal:** Update the Chess.com Diamond Membership product to a 1-year BDT-priced offering with a reliable logo fallback, refresh official logos for Netflix/Spotify/YouTube Premium, and ensure consistent product-card interactions without changing the premium dark style.
 
 **Planned changes:**
-- Remove the “3 Month” duration option across product cards, cart items, and WhatsApp checkout/message generation; enforce a single “1 Month” duration everywhere.
-- Add a visible link labeled “Investigation / Proof (Messenger Group)” that opens https://m.me/j/AbZu2osHvaTmS0WN/ in a new tab.
-- Expand the product grid catalog to add: ChatGPT, Gemini, Facebook, Toffee, Chorki, Deepto Pay, Bioscope, iScreen, Hoichoi, PUBG, Free Fire, Adobe Creative, Canva, Truecaller, CamScanner; each card uses an official logo image from `/assets/generated/` and falls back to placeholder initials if the image fails to load.
-- Restrict visible numeric pricing to only Netflix Premium and Chess.com Diamond Membership; for all other products show exactly “(prize)” that opens WhatsApp https://wa.me/8801326060586 in a new tab with a pre-filled price inquiry message for that product (and ensure non-priced products don’t require numeric totals for cart/checkout flows).
-- Replace/update the Chess.com product image to use an official Chess.com logo asset under `/assets/generated/` and ensure the product data references the exact generated filename.
+- Update Chess.com product in `frontend/src/components/ProductGrid.tsx` to use the provided remote logo URL, offer a single duration labeled exactly "1 Year", and set regular price to 1200 BDT with offer price 970 BDT (used for totals).
+- Ensure Chess.com cart/checkout/WhatsApp messaging uses Duration: "1 Year" and totals in "BDT" based on the offer price.
+- Add robust Chess.com logo fallback in `frontend/src/components/ProductCard.tsx` so a local `/assets/generated/...` image is shown if the remote logo fails to load.
+- Refresh Netflix, Spotify, and YouTube Premium product logos to official high-resolution static assets served from `frontend/public/assets/generated/`, and reference them via stable `/assets/generated/...` paths in `frontend/src/components/ProductGrid.tsx`.
+- Ensure consistent product-card behavior across all products: reliable "+" / "-" quantity controls (min 1) and "Buy It Now" opens WhatsApp `https://wa.me/8801326060586` with an English pre-filled message for priced products (while keeping the existing unpriced inquiry flow).
 
-**User-visible outcome:** Shoppers see a simplified 1-month-only purchase experience, can open the Messenger proof group link, can browse additional services with logos, and can click “(prize)” to inquire on WhatsApp for all non-Netflix/Chess products while still seeing numeric prices for Netflix and Chess.com.
+**User-visible outcome:** Users see an updated Chess.com card with a 1-year option and BDT pricing (BDT 1200 crossed out, BDT 970 used for totals), logos that display reliably (including offline-ready official logos for Netflix/Spotify/YouTube Premium), and consistent quantity + WhatsApp purchase/inquiry behavior across product cards.
