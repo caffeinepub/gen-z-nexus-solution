@@ -2,48 +2,8 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-update-the-chess-com-diamond-membership-product-configuration-in-frontend-src-components-productgrid-tsx-to-1-use-the-exact-remote-logo-url-https-lh3-googleusercontent-com-pw-ap1gczprm5qcg1h5ovf-e-y7o-9g9-o8yn-2m-7v-s-w-o-z-f-w-f-w-f-w-f-w-f-w-f-w-f-w-f-w-f-w-w256-h256-as-the-primary-image-2-change-its-duration-from-the-currently-hardcoded-monthly-duration-to-a-single-selectable-duration-labeled-exactly-1-year-and-3-set-pricing-to-regular-1200-bdt-and-offer-970-bdt-offer-price-is-used-for-totals",
-      "featureTitle": "Update the Chess.com Diamond Membership product configuration in `frontend/src/components/ProductGrid.tsx` to: (1) use the exact remote logo URL `https://lh3.googleusercontent.com/pw/AP1GczPrM5qCg1h5oVf-E-Y7O_9G9-o8yN_2m_7v-S_w-O_z-F_w-F_w-F_w-F_w-F_w-F_w-F_w-F_w-F_w=w256-h256` as the primary image, (2) change its duration from the currently hardcoded monthly duration to a single selectable duration labeled exactly \"1 Year\", and (3) set pricing to regular 1200 BDT and offer 970 BDT (offer price is used for totals).",
-      "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/components/CartDrawer.tsx",
-        "frontend/src/components/ProductCard.tsx",
-        "frontend/src/components/ProductGrid.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-36"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-implement-robust-chess-com-logo-fallback-behavior-in-frontend-src-components-productcard-tsx-if-the-remote-chess-com-logo-url-fails-to-load-automatically-fall-back-to-a-locally-hosted-static-image-under-frontend-public-assets-generated-without-showing-a-broken-image-icon",
-      "featureTitle": "Implement robust Chess.com logo fallback behavior in `frontend/src/components/ProductCard.tsx`: if the remote Chess.com logo URL fails to load, automatically fall back to a locally hosted static image under `frontend/public/assets/generated/` (without showing a broken image icon).",
-      "files": [
-        "frontend/src/components/ProductCard.tsx",
-        "frontend/src/components/ProductGrid.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-37"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-refresh-the-product-logos-for-netflix-spotify-and-youtube-premium-to-use-official-high-resolution-branding-logos-not-generic-icons-or-old-banners-and-ensure-the-product-data-references-those-updated-assets-consistently",
-      "featureTitle": "Refresh the product logos for Netflix, Spotify, and YouTube Premium to use official high-resolution branding logos (not generic icons or old banners), and ensure the product data references those updated assets consistently.",
+      "featureId": "feature-add-official-original-logo-image-assets-sourced-online-for-every-product-shown-in-frontend-src-components-productgrid-tsx-store-them-as-static-files-under-frontend-public-assets-generated-and-update-the-product-image-fields-to-reference-only-these-local-static-asset-paths-no-remote-external-image-urls-at-runtime",
+      "featureTitle": "Add official original logo/image assets (sourced online) for every product shown in `frontend/src/components/ProductGrid.tsx`, store them as static files under `frontend/public/assets/generated/`, and update the product `image` fields to reference only these local static asset paths (no remote/external image URLs at runtime).",
       "files": [
         "frontend/src/components/ProductGrid.tsx"
       ],
@@ -55,26 +15,7 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-38"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-ensure-product-card-interaction-consistency-across-all-products-quantity-and-buttons-work-reliably-minimum-quantity-1-and-buy-it-now-opens-whatsapp-chat-for-priced-products-using-https-wa-me-8801326060586-with-a-pre-filled-english-message-do-not-degrade-the-existing-premium-dark-styling",
-      "featureTitle": "Ensure product-card interaction consistency across all products: quantity \"+\" and \"-\" buttons work reliably (minimum quantity 1) and \"Buy It Now\" opens WhatsApp chat for priced products using `https://wa.me/8801326060586` with a pre-filled English message. Do not degrade the existing premium dark styling.",
-      "files": [
-        "frontend/src/components/CartDrawer.tsx",
-        "frontend/src/components/ProductCard.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-39"
+        "REQ-52"
       ],
       "confidence": "high"
     }

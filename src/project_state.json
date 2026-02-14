@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 23,
-  "summary": "Update the storefront product section: Chess.com uses a specific provided logo URL (with fallback to uploading into site assets if the URL fails), switches duration from monthly to a 1 Year option, and updates pricing to 1200 BDT regular / 970 BDT offer; additionally, Netflix/Spotify/YouTube Premium should use automatically fetched official high-resolution logos while maintaining consistent premium dark card styling with working quantity controls and WhatsApp-linked Buy Now.",
+  "projectStateVersion": 31,
+  "summary": "Storefront update: use ONLY user-uploaded local asset filenames for product card icons (no external/AI images), enforce square centered app-icon presentation with no banners/placeholders, keep WhatsApp buy flow; Chess.com is single “1 Year” option priced 1200 BDT regular / 970 BDT offer; expand catalog to include ChatGPT, Gemini, Toffee, Chorki, PUBG Mobile, Free Fire with exact filename mappings.",
   "architectural_notes": [
     "Single-page storefront with client-side JavaScript for UI interactions (search filter, cart count, dynamic pricing, toast).",
     "WhatsApp direct-buy flow builds a URL-encoded prefilled message and redirects to wa.me/8801326060586.",
@@ -16,10 +16,11 @@
   ],
   "known_issues": [
     "Deployment failed with error: domain gen-z_nexus_solution must be 5–50 characters and contain only letters, numbers, and hyphens (underscore not allowed).",
-    "Unable to go live due to deployment error (needs fix and redeploy)."
+    "Unable to go live due to deployment error (needs fix and redeploy).",
+    "Build/deploy encountered: “System configuration error. Please report this issue to the Caffeine team.” (blocks proceeding until resolved or retried successfully)."
   ],
   "isFixRequest": false,
-  "imageRequirements": "## Required Images\n- Chess.com official logo (chesscom-logo-remote-fallback.dim_512x512.png)\n\n## Edit Images\n- Replace with official high-resolution Netflix branding logo (netflix-logo.dim_512x512.png > netflix-logo.dim_512x512.png)\n- Replace with official high-resolution Spotify branding logo (spotify-logo.dim_512x512.png > spotify-logo.dim_512x512.png)\n- Replace with official high-resolution YouTube Premium branding logo (youtube-logo.dim_512x512.png > youtube-logo.dim_512x512.png)",
+  "imageRequirements": "## Required Images\n- Official Netflix logo (netflix-logo-online.dim_512x512.png)\n- Official Chess.com logo (chesscom-logo-online.dim_512x512.png)\n- Official Spotify logo (spotify-logo-online.dim_512x512.png)\n- Official YouTube Premium logo (youtube-premium-logo-online.dim_512x512.png)\n- Official ChatGPT logo (chatgpt-logo-online.dim_512x512.png)\n- Official Gemini logo (gemini-logo-online.dim_512x512.png)\n- Official Facebook logo (facebook-logo-online.dim_512x512.png)\n- Official Toffee logo (toffee-logo-online.dim_512x512.png)\n- Official Chorki logo (chorki-logo-online.dim_512x512.png)\n- Official Deepto Pay logo (deepto-pay-logo-online.dim_512x512.png)\n- Official Bioscope logo (bioscope-logo-online.dim_512x512.png)\n- Official iScreen logo (iscreen-logo-online.dim_512x512.png)\n- Official Hoichoi logo (hoichoi-logo-online.dim_512x512.png)\n- Official PUBG Mobile logo (pubg-mobile-logo-online.dim_512x512.png)\n- Official Free Fire logo (free-fire-logo-online.dim_512x512.png)\n- Official Adobe Creative logo (adobe-creative-logo-online.dim_512x512.png)\n- Official Canva logo (canva-logo-online.dim_512x512.png)\n- Official Truecaller logo (truecaller-logo-online.dim_512x512.png)\n- Official CamScanner logo (camscanner-logo-online.dim_512x512.png)",
   "existing_features": [
     {
       "id": "feature-create-the-main-storefront-page-for-the-e-commerce-subscription-store-named-gen-z-nexus-solution-with-a-dark-slate-premium-theme-and-red-accents-applied-consistently-across-all-sections-typography-buttons-cards-badges-inputs",
@@ -332,6 +333,102 @@
         "REQ-39"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-add-the-user-uploaded-chess-com-logo-image-images-4-jpeg-as-a-static-asset-under-frontend-public-assets-generated-converted-to-a-square-512x512-png-preserving-the-logo-s-visual-details-no-ai-generation-no-external-images",
+      "title": "Add the user-uploaded Chess.com logo image (images-4.jpeg) as a static asset under `frontend/public/assets/generated/` converted to a square 512x512 PNG, preserving the logo’s visual details (no AI generation; no external images).",
+      "reqIds": [
+        "REQ-40"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-frontend-src-components-productgrid-tsx-so-the-chess-com-diamond-membership-product-id-chess-uses-only-the-locally-hosted-uploaded-logo-asset-no-remote-url-and-reflects-duration-label-exactly-1-year-regular-price-1200-bdt-offer-price-970-bdt-offer-price-used-for-totals",
+      "title": "Update `frontend/src/components/ProductGrid.tsx` so the Chess.com Diamond Membership product (`id: 'chess'`) uses only the locally hosted uploaded logo asset (no remote URL) and reflects: duration label exactly \"1 Year\", Regular Price 1200 BDT, Offer Price 970 BDT (offer price used for totals).",
+      "reqIds": [
+        "REQ-41"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-an-app-icon-style-presentation-to-product-images-on-product-cards-enforce-a-square-presentation-with-slight-rounded-corners-for-the-logo-artwork-without-altering-the-image-files-themselves",
+      "title": "Apply an app-icon style presentation to product images on product cards: enforce a square presentation with slight rounded corners for the logo artwork without altering the image files themselves.",
+      "reqIds": [
+        "REQ-42"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-netflix-youtube-premium-and-spotify-product-images-to-use-only-user-provided-official-square-app-style-icons-no-external-fetching-no-ai-generated-images-and-ensure-any-banner-background-style-branding-images-are-not-used",
+      "title": "Replace Netflix, YouTube Premium, and Spotify product images to use only user-provided official square app-style icons (no external fetching; no AI-generated images) and ensure any banner/background-style branding images are not used.",
+      "reqIds": [
+        "REQ-43"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-frontend-src-components-productgrid-tsx-product-data-so-the-following-products-use-the-exact-mapped-local-asset-filenames-for-their-image-field-chess-com-diamond-membership-assets-generated-1000130484-jpg-netflix-premium-assets-generated-1000130486-png-youtube-premium-assets-generated-1000130487-jpg-spotify-assets-generated-1000130488-png-chatgpt-assets-generated-1000130492-png-gemini-assets-generated-1000130489-jpg-toffee-assets-generated-1000130491-jpg-chorki-assets-generated-1000130493-png-pubg-product-name-must-display-as-pubg-mobile-and-use-assets-generated-1000130494-jpg-free-fire-assets-generated-1000130495-jpg",
+      "title": "Update `frontend/src/components/ProductGrid.tsx` product data so the following products use the exact mapped local asset filenames for their `image` field: Chess.com Diamond Membership → `/assets/generated/1000130484.jpg`; Netflix Premium → `/assets/generated/1000130486.png`; YouTube Premium → `/assets/generated/1000130487.jpg`; Spotify → `/assets/generated/1000130488.png`; ChatGPT → `/assets/generated/1000130492.png`; Gemini → `/assets/generated/1000130489.jpg`; Toffee → `/assets/generated/1000130491.jpg`; Chorki → `/assets/generated/1000130493.png`; PUBG product name must display as \"PUBG Mobile\" and use `/assets/generated/1000130494.jpg`; Free Fire → `/assets/generated/1000130495.jpg`.",
+      "reqIds": [
+        "REQ-45"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-chess-com-diamond-membership-configuration-in-frontend-src-components-productgrid-tsx-to-have-a-single-duration-label-exactly-1-year-and-pricing-exactly-regular-crossed-out-1200-bdt-and-offer-current-used-for-totals-970-bdt",
+      "title": "Update the Chess.com Diamond Membership configuration in `frontend/src/components/ProductGrid.tsx` to have a single duration label exactly \"1 Year\" and pricing exactly: Regular (crossed-out) 1200 BDT and Offer (current/used for totals) 970 BDT.",
+      "reqIds": [
+        "REQ-46"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-product-images-render-in-a-square-1-1-centered-app-icon-presentation-across-product-cards-without-altering-the-image-files-themselves-and-without-showing-broken-image-icons-fallback-must-display-the-existing-placeholder-initial-if-an-image-fails-to-load",
+      "title": "Ensure product images render in a square (1:1) centered \"app icon\" presentation across product cards without altering the image files themselves, and without showing broken image icons (fallback must display the existing placeholder initial if an image fails to load).",
+      "reqIds": [
+        "REQ-47"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-the-storefront-uses-the-user-confirmed-exact-product-icon-filenames-served-locally-from-frontend-public-assets-generated-for-these-products-netflix-premium-assets-generated-1000130486-png-chess-com-diamond-membership-assets-generated-1000130484-jpg-youtube-premium-assets-generated-1000130487-jpg-spotify-assets-generated-1000130488-png-chatgpt-assets-generated-1000130492-png-gemini-assets-generated-1000130489-jpg-toffee-assets-generated-1000130491-jpg-chorki-assets-generated-1000130493-png-pubg-mobile-assets-generated-1000130494-jpg-free-fire-assets-generated-1000130495-jpg-do-not-use-any-external-remote-image-urls-for-these-products",
+      "title": "Ensure the storefront uses the user-confirmed exact product icon filenames (served locally from `frontend/public/assets/generated/`) for these products: Netflix Premium → `/assets/generated/1000130486.png`; Chess.com Diamond Membership → `/assets/generated/1000130484.jpg`; YouTube Premium → `/assets/generated/1000130487.jpg`; Spotify → `/assets/generated/1000130488.png`; ChatGPT → `/assets/generated/1000130492.png`; Gemini → `/assets/generated/1000130489.jpg`; Toffee → `/assets/generated/1000130491.jpg`; Chorki → `/assets/generated/1000130493.png`; PUBG Mobile → `/assets/generated/1000130494.jpg`; Free Fire → `/assets/generated/1000130495.jpg`. Do not use any external/remote image URLs for these products.",
+      "reqIds": [
+        "REQ-48"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-chess-com-diamond-membership-product-configuration-to-use-a-single-duration-labeled-exactly-1-year-with-regular-crossed-out-1200-bdt-and-offer-current-used-for-totals-970-bdt",
+      "title": "Update the Chess.com Diamond Membership product configuration to use a single duration labeled exactly \"1 Year\" with Regular (crossed-out) 1200 BDT and Offer (current/used for totals) 970 BDT.",
+      "reqIds": [
+        "REQ-49"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-any-remaining-letter-placeholders-e-g-n-with-the-actual-product-image-assets-for-all-products-that-have-an-image-configured-and-ensure-product-icons-render-as-square-1-1-centered-app-icon-style-within-the-product-card-without-altering-the-image-files-themselves",
+      "title": "Replace any remaining letter placeholders (e.g., \"N\") with the actual product image assets for all products that have an `image` configured, and ensure product icons render as square (1:1), centered, app-icon style within the product card without altering the image files themselves.",
+      "reqIds": [
+        "REQ-50"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-finalize-a-build-that-is-ready-for-the-user-to-click-live-and-deploy-by-ensuring-the-project-compiles-successfully-and-deployment-prerequisites-in-the-repository-are-satisfied-including-ic-canister-naming-rules",
+      "title": "Finalize a build that is ready for the user to click \"Live\" and \"Deploy\" by ensuring the project compiles successfully and deployment prerequisites in the repository are satisfied (including IC canister naming rules).",
+      "reqIds": [
+        "REQ-51"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-official-original-logo-image-assets-sourced-online-for-every-product-shown-in-frontend-src-components-productgrid-tsx-store-them-as-static-files-under-frontend-public-assets-generated-and-update-the-product-image-fields-to-reference-only-these-local-static-asset-paths-no-remote-external-image-urls-at-runtime",
+      "title": "Add official original logo/image assets (sourced online) for every product shown in `frontend/src/components/ProductGrid.tsx`, store them as static files under `frontend/public/assets/generated/`, and update the product `image` fields to reference only these local static asset paths (no remote/external image URLs at runtime).",
+      "reqIds": [
+        "REQ-52"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -474,8 +571,28 @@
       "status": "pending"
     },
     {
-      "id": "AR-25",
-      "summary": "Automatically fetch and use official high-resolution logos for Netflix, Spotify, and YouTube Premium (replace generic/old images)",
+      "id": "AR-26",
+      "summary": "Use only user-provided/uploaded official square icons for Chess.com/Netflix/Spotify/YouTube (no external fetching or AI-generated images), apply slight rounded corners (app icon style), and remove background banners from logos",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-27",
+      "summary": "Map each product card image src to the exact user-uploaded local filenames (no external links): Chess.com 1000130484.jpg; Netflix 1000130486.png; YouTube 1000130487.jpg; Spotify 1000130488.png; ChatGPT 1000130492.png; Gemini 1000130489.jpg; Toffee 1000130491.jpg; Chorki 1000130493.png; PUBG Mobile 1000130494.jpg; Free Fire 1000130495.jpg",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-28",
+      "summary": "Add the user-provided product image files to the frontend static assets so they are served from `frontend/public/assets/generated/` using these exact filenames (no external links, no AI-generated images): `1000130484.jpg`, `1000130486.png`, `1000130487.jpg`, `1000130488.png`, `1000130492.png`, `1000130489.jpg`, `1000130491.jpg`, `1000130493.png`, `1000130494.jpg`, `1000130495.jpg`.",
+      "reqIds": [
+        "REQ-44"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-29",
+      "summary": "Fetch and add original product images/logos from online sources for all products (external/remote assets)",
       "reqIds": [],
       "status": "pending"
     }

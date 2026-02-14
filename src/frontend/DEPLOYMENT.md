@@ -1,45 +1,29 @@
 # Deployment Guide
 
-This guide provides step-by-step instructions for deploying your application to the Internet Computer.
+This guide covers deploying your application to the Internet Computer.
 
 ## Prerequisites
 
-Before deploying, ensure you have:
+- dfx CLI installed and configured
+- Internet Computer wallet with cycles
+- Valid canister names (see naming rules below)
 
-1. **dfx installed**: The DFINITY Canister SDK
-   ```bash
-   sh -ci "$(curl -fsSL https://internetcomputer.org/install.sh)"
-   ```
+## IC Canister Naming Rules
 
-2. **Node.js and npm**: For building the frontend
-   ```bash
-   node --version  # Should be v18 or higher
-   npm --version
-   ```
-
-3. **Cycles**: Sufficient cycles in your wallet for deployment
-   - For local development: Not required
-   - For mainnet: You'll need cycles (ICP tokens converted to cycles)
-
-## Internet Computer Naming Rules
-
-**IMPORTANT**: All canister names must follow these rules:
-
+Canister names must follow these strict rules:
 - **Length**: 5-50 characters
-- **Allowed characters**: lowercase letters (a-z), numbers (0-9), hyphens (-)
-- **NOT allowed**: underscores (_), uppercase letters, special characters
+- **Characters**: lowercase letters (a-z), numbers (0-9), and hyphens (-) only
+- **No underscores**: Replace `_` with `-`
+- **No uppercase**: Convert to lowercase
 
-### Example of Valid Names
-✓ `gen-z-nexus-solution`
-✓ `my-app-backend`
-✓ `frontend-canister`
+### Common Issues
 
-### Example of Invalid Names
-✗ `gen-z_nexus_solution` (contains underscore)
-✗ `My-App` (contains uppercase)
-✗ `app` (too short, less than 5 characters)
+❌ Invalid: `My_App`, `test_canister`, `APP123`  
+✅ Valid: `my-app`, `test-canister`, `app123`
 
-## Standard Deployment
+## Deployment Steps
 
-For a clean, first-time deployment:
+### 1. Validate Canister Names
+
+Before deploying, run the validation script:
 

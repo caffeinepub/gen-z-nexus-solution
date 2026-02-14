@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Star, Minus, Plus } from 'lucide-react';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -28,24 +28,24 @@ interface ProductCardProps {
 export function ProductCard({ product, onAddToCart }: ProductCardProps) {
   const [quantity, setQuantity] = useState(1);
   const [imageError, setImageError] = useState(false);
-  const [fallbackError, setFallbackError] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   const duration = product.duration || '1 Month';
   const currencyLabel = product.currencyLabel || 'Tk';
   const totalPrice = product.isPriced && product.price ? product.price * quantity : 0;
 
+  // Reset image state when product changes
+  useEffect(() => {
+    setImageError(false);
+    setImageLoaded(false);
+  }, [product.image]);
+
   const handleImageError = () => {
-    if (!imageError && product.fallbackImage) {
-      setImageError(true);
-    } else if (imageError && !fallbackError) {
-      setFallbackError(true);
-    }
+    setImageError(true);
   };
 
-  const getCurrentImageSrc = () => {
-    if (!imageError) return product.image;
-    if (product.fallbackImage && !fallbackError) return product.fallbackImage;
-    return null;
+  const handleImageLoad = () => {
+    setImageLoaded(true);
   };
 
   const handleAddToCart = () => {
@@ -69,7 +69,7 @@ export function ProductCard({ product, onAddToCart }: ProductCardProps) {
     const message = encodeURIComponent(
       `Hi! I want to buy:\n\nProduct: ${product.name}\nDuration: ${duration}\nQuantity: ${quantity}\nTotal: ${currencyLabel} ${totalPrice}`
     );
-    window.open(`https://wa.me/8801326060586?text=${message}`, '_blank');
+    window.open(`https://wa.me/8801326060586?text=${message}`, '_blank', 'noopener,noreferrer');
   };
 
   const handlePriceInquiry = () => {
@@ -87,24 +87,33 @@ export function ProductCard({ product, onAddToCart }: ProductCardProps) {
     setQuantity(prev => prev + 1);
   };
 
-  const currentImageSrc = getCurrentImageSrc();
-
   return (
     <Card className="overflow-hidden hover:shadow-lg transition-shadow">
       <div className="relative">
         <Badge className="absolute top-2 right-2 z-10" variant="destructive">
           Sale
         </Badge>
-        <div className="aspect-square bg-muted flex items-center justify-center overflow-hidden">
-          {currentImageSrc ? (
-            <img
-              src={currentImageSrc}
-              alt={`${product.name} logo`}
-              className="w-full h-full object-contain p-4"
-              onError={handleImageError}
-            />
+        <div className="aspect-square bg-muted flex items-center justify-center overflow-hidden p-6">
+          {!imageError ? (
+            <div className="product-icon-container">
+              <img
+                src={product.image}
+                alt={`${product.name} logo`}
+                className="product-icon-image"
+                onError={handleImageError}
+                onLoad={handleImageLoad}
+                style={{ display: imageLoaded ? 'block' : 'none' }}
+              />
+              {!imageLoaded && (
+                <div className="w-24 h-24 rounded-2xl bg-primary/10 flex items-center justify-center">
+                  <span className="text-5xl font-bold text-primary">{product.name[0]}</span>
+                </div>
+              )}
+            </div>
           ) : (
-            <span className="text-4xl">{product.name[0]}</span>
+            <div className="w-24 h-24 rounded-2xl bg-primary/10 flex items-center justify-center">
+              <span className="text-5xl font-bold text-primary">{product.name[0]}</span>
+            </div>
           )}
         </div>
       </div>
@@ -167,7 +176,7 @@ export function ProductCard({ product, onAddToCart }: ProductCardProps) {
               onClick={handlePriceInquiry}
               className="text-xl font-bold text-destructive hover:underline cursor-pointer"
             >
-              (prize)
+              Ask for Price
             </button>
           </div>
         )}

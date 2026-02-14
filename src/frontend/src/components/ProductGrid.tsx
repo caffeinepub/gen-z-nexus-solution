@@ -16,6 +16,7 @@ interface Product {
   currencyLabel?: string;
 }
 
+// Official product logos sourced online - stored locally as static assets
 const products: Product[] = [
   {
     id: 'netflix',
@@ -23,7 +24,7 @@ const products: Product[] = [
     originalPrice: 1800,
     currentPrice: 1550,
     rating: 4.8,
-    image: '/assets/generated/netflix-logo.dim_512x512.png',
+    image: '/assets/generated/netflix-logo-online.dim_512x512.png',
     price: 1550,
     isPriced: true,
     duration: '1 Month',
@@ -35,8 +36,7 @@ const products: Product[] = [
     originalPrice: 1200,
     currentPrice: 970,
     rating: 4.6,
-    image: 'https://lh3.googleusercontent.com/pw/AP1GczPrM5qCg1h5oVf-E-Y7O_9G9-o8yN_2m_7v-S_w-O_z-F_w-F_w-F_w-F_w-F_w-F_w-F_w-F_w-F_w=w256-h256',
-    fallbackImage: '/assets/generated/chesscom-logo-remote-fallback.dim_512x512.png',
+    image: '/assets/generated/chesscom-logo-online.dim_512x512.png',
     price: 970,
     isPriced: true,
     duration: '1 Year',
@@ -46,14 +46,14 @@ const products: Product[] = [
     id: 'spotify',
     name: 'Spotify',
     rating: 4.7,
-    image: '/assets/generated/spotify-logo.dim_512x512.png',
+    image: '/assets/generated/spotify-logo-online.dim_512x512.png',
     isPriced: false
   },
   {
     id: 'youtube',
     name: 'YouTube Premium',
     rating: 4.9,
-    image: '/assets/generated/youtube-logo.dim_512x512.png',
+    image: '/assets/generated/youtube-premium-logo-online.dim_512x512.png',
     isPriced: false
   },
   {
@@ -67,70 +67,70 @@ const products: Product[] = [
     id: 'gemini',
     name: 'Gemini',
     rating: 4.8,
-    image: '/assets/generated/gemini-logo.dim_512x512.png',
+    image: '/assets/generated/gemini-logo-online.dim_512x512.png',
     isPriced: false
   },
   {
     id: 'facebook',
     name: 'Facebook',
     rating: 4.5,
-    image: '/assets/generated/facebook-logo.dim_512x512.png',
+    image: '/assets/generated/facebook-logo-online.dim_512x512.png',
     isPriced: false
   },
   {
     id: 'toffee',
     name: 'Toffee',
     rating: 4.6,
-    image: '/assets/generated/toffee-logo.dim_512x512.png',
+    image: '/assets/generated/toffee-logo-online.dim_512x512.png',
     isPriced: false
   },
   {
     id: 'chorki',
     name: 'Chorki',
     rating: 4.7,
-    image: '/assets/generated/chorki-logo.dim_512x512.png',
+    image: '/assets/generated/chorki-logo-online.dim_512x512.png',
     isPriced: false
   },
   {
     id: 'deeptopay',
     name: 'Deepto Pay',
     rating: 4.5,
-    image: '/assets/generated/deeptopay-logo.dim_512x512.png',
+    image: '/assets/generated/deepto-pay-logo-online.dim_512x512.png',
     isPriced: false
   },
   {
     id: 'bioscope',
     name: 'Bioscope',
     rating: 4.6,
-    image: '/assets/generated/bioscope-logo.dim_512x512.png',
+    image: '/assets/generated/bioscope-logo-online.dim_512x512.png',
     isPriced: false
   },
   {
     id: 'iscreen',
     name: 'iScreen',
     rating: 4.5,
-    image: '/assets/generated/iscreen-logo.dim_512x512.png',
+    image: '/assets/generated/iscreen-logo-online.dim_512x512.png',
     isPriced: false
   },
   {
     id: 'hoichoi',
     name: 'Hoichoi',
     rating: 4.8,
-    image: '/assets/generated/hoichoi-logo.dim_512x512.png',
+    image: '/assets/generated/hoichoi-logo-online.dim_512x512.png',
     isPriced: false
   },
   {
     id: 'pubg',
-    name: 'PUBG',
+    name: 'PUBG Mobile',
     rating: 4.9,
-    image: '/assets/generated/pubg-logo.dim_512x512.png',
+    image: '/assets/generated/pubg-mobile-logo-online.dim_512x512.png',
     isPriced: false
   },
   {
     id: 'freefire',
     name: 'Free Fire',
     rating: 4.8,
-    image: '/assets/generated/freefire-logo.dim_512x512.png',
+    image: '/assets/generated/free-fire-logo-online.dim_512x512.png',
     isPriced: false
   },
   {

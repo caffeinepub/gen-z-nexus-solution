@@ -79,4 +79,20 @@
     .animate-marquee {
         animation: marquee 20s linear infinite;
     }
+
+    /* Product icon styling - square 1:1 centered app-icon presentation */
+    .product-icon-container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .product-icon-image {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center;
+    }
 }

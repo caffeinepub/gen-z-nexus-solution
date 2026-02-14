@@ -62,7 +62,7 @@ function App() {
           <CartDrawer 
             isOpen={isCartOpen}
             onClose={() => setIsCartOpen(false)}
-            cart={cart}
+            cartItems={cart}
             onRemoveItem={removeFromCart}
           />
           <Toaster />
